@@ -1,0 +1,1 @@
+# arabic_korean_memo
