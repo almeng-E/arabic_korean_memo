@@ -14,7 +14,7 @@ class HomeBottomWidget extends StatefulWidget {
 }
 
 class _HomeBottomWidgetState extends State<HomeBottomWidget> {
-  int currentIndex = 0;
+  int _currentIndex = 0;
 
   final List bodyPages = [
     const MainPageWords(),
@@ -29,11 +29,11 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 10,
         //현재 index 변수에 저장
-        currentIndex: currentIndex,
+        currentIndex: _currentIndex,
         //tap -> index 변경
         onTap: (index) {
           setState(() {
-            currentIndex = index;
+            _currentIndex = index;
           });
         },
         //BottomNavi item list
@@ -70,7 +70,7 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
 
       //List item index로 Body 변경
       body: Center(
-        child: bodyPages[currentIndex],
+        child: bodyPages[_currentIndex],
       ),
     );
   }
