@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/themes/colors.dart';
 
@@ -15,41 +16,46 @@ class _MainPageWordsState extends State<MainPageWords> {
       child: Column(
         children: [
           // 상단 앱 바
-          SafeArea(
-            child: SizedBox(
-              height: 80,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 22,
-                    width: double.infinity,
-                  ),
-                  Flexible(
-                    fit: FlexFit.tight,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Container(
-                          color: Colors.green,
-                          child: const Text(
-                            'Container1',
-                          ),
+          Row(
+            children: [
+              Flexible(
+                fit: FlexFit.tight,
+                child: SizedBox(
+                  height: 80,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 22,
+                        width: double.infinity,
+                      ),
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Container(
+                              color: Colors.green,
+                              child: const Text(
+                                '단어장',
+                              ),
+                            ),
+                            Container(
+                              color: Colors.amber,
+                              child: const Icon(CupertinoIcons.add),
+                            )
+                          ],
                         ),
-                        Container(
-                          color: Colors.amber,
-                          child: const Icon(Icons.ac_unit_outlined),
-                        )
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 22,
+                        width: double.infinity,
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 22,
-                    width: double.infinity,
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
 
           // Expanded로 flex 추가, 빈 공간 꽉 채움

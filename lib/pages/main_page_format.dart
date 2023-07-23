@@ -43,7 +43,7 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
             label: '단어장',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.pencil_outline),
+            icon: Icon(CupertinoIcons.pencil),
             label: '학습',
           ),
           BottomNavigationBarItem(
@@ -69,7 +69,7 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
       ),
 
       //List item index로 Body 변경
-      body: Center(
+      body: SafeArea(
         child: bodyPages[_currentIndex],
       ),
     );
