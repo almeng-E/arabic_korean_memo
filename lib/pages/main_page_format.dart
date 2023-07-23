@@ -8,7 +8,6 @@ import 'package:arabic_korean_memo/themes/colors.dart';
 
 class HomeBottomWidget extends StatefulWidget {
   const HomeBottomWidget({super.key});
-
   @override
   State<HomeBottomWidget> createState() => _HomeBottomWidgetState();
 }
@@ -55,6 +54,7 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
             label: '설정',
           ),
         ],
+
         // BottomNavi 스타일 지정
         selectedItemColor: mainMint,
         selectedLabelStyle: const TextStyle(
@@ -62,7 +62,9 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
           fontSize: 13,
         ),
         unselectedItemColor: Colors.grey,
-        unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+        unselectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+        ),
         showUnselectedLabels: true,
         // 타입
         type: BottomNavigationBarType.fixed,

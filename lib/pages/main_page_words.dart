@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/themes/colors.dart';
+import 'package:arabic_korean_memo/layouts/main_page_app_bar.dart';
 
 class MainPageWords extends StatefulWidget {
   const MainPageWords({super.key});
@@ -16,46 +16,8 @@ class _MainPageWordsState extends State<MainPageWords> {
       child: Column(
         children: [
           // 상단 앱 바
-          Row(
-            children: [
-              Flexible(
-                fit: FlexFit.tight,
-                child: SizedBox(
-                  height: 80,
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 22,
-                        width: double.infinity,
-                      ),
-                      Flexible(
-                        fit: FlexFit.tight,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Container(
-                              color: Colors.green,
-                              child: const Text(
-                                '단어장',
-                              ),
-                            ),
-                            Container(
-                              color: Colors.amber,
-                              child: const Icon(CupertinoIcons.add),
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 22,
-                        width: double.infinity,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+          const MainPageAppBar(
+            pageName: '단어장',
           ),
 
           // Expanded로 flex 추가, 빈 공간 꽉 채움
