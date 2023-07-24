@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
-class HomeBottomWidget extends StatefulWidget {
-  const HomeBottomWidget({super.key});
+class MainPageFormat extends StatefulWidget {
+  const MainPageFormat({super.key});
   @override
-  State<HomeBottomWidget> createState() => _HomeBottomWidgetState();
+  State<MainPageFormat> createState() => _MainPageFormatState();
 }
 
-class _HomeBottomWidgetState extends State<HomeBottomWidget> {
+class _MainPageFormatState extends State<MainPageFormat> {
   int _currentIndex = 0;
 
   final List bodyPages = [

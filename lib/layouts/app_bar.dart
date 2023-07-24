@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainPageAppBar extends StatefulWidget {
   final String pageName;
+  final Row appBarButtons;
 
   const MainPageAppBar({
     super.key,
     required this.pageName,
+    required this.appBarButtons,
   });
 
   @override
@@ -39,22 +40,7 @@ class _MainPageAppBarState extends State<MainPageAppBar> {
           ),
           Container(
             color: Colors.amber,
-            child: const Row(
-              children: [
-                Icon(
-                  CupertinoIcons.shuffle_medium,
-                  size: 28,
-                ),
-                Icon(
-                  CupertinoIcons.add,
-                  size: 28,
-                ),
-                Icon(
-                  CupertinoIcons.add,
-                  size: 28,
-                ),
-              ],
-            ),
+            child: widget.appBarButtons,
           )
         ],
       ),
