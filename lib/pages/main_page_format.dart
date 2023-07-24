@@ -2,9 +2,9 @@ import 'package:arabic_korean_memo/pages/main_page_settings.dart';
 import 'package:arabic_korean_memo/pages/main_page_study.dart';
 import 'package:arabic_korean_memo/pages/main_page_tests.dart';
 import 'package:arabic_korean_memo/pages/main_page_words.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/themes/colors.dart';
+import 'package:arabic_korean_memo/themes/my_colors.dart';
+import 'package:arabic_korean_memo/themes/my_icons.dart';
 
 class HomeBottomWidget extends StatefulWidget {
   const HomeBottomWidget({super.key});
@@ -38,19 +38,19 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
         //BottomNavi item list
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.rectangle_paperclip),
+            icon: Icon(CustomIcon.mpWords),
             label: '단어장',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.pencil),
+            icon: Icon(CustomIcon.mpStudy),
             label: '학습',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.doc_checkmark),
+            icon: Icon(CustomIcon.mpTest),
             label: '테스트',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.gear_alt),
+            icon: Icon(CustomIcon.mpSettings),
             label: '설정',
           ),
         ],
@@ -61,9 +61,10 @@ class _HomeBottomWidgetState extends State<HomeBottomWidget> {
           fontWeight: FontWeight.w700,
           fontSize: 13,
         ),
-        unselectedItemColor: Colors.grey,
+        // unselectedItemColor: Colors.grey,
         unselectedLabelStyle: const TextStyle(
           fontWeight: FontWeight.w500,
+          fontSize: 13,
         ),
         showUnselectedLabels: true,
         // 타입

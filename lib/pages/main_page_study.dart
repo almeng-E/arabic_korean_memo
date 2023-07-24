@@ -1,4 +1,4 @@
-import 'package:arabic_korean_memo/themes/colors.dart';
+import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/layouts/main_page_app_bar.dart';
 
