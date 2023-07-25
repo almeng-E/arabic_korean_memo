@@ -23,7 +23,7 @@ class _MainPageAppBarState extends State<MainPageAppBar> {
       height: 80,
       padding: const EdgeInsets.symmetric(
         vertical: 22,
-        horizontal: 10,
+        horizontal: 14,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

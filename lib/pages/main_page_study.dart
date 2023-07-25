@@ -16,7 +16,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
     return SizedBox.expand(
       child: Column(
         children: [
-          // 상단 앱 바
+          // *********************************상단 앱 바
           const MainPageAppBar(
             pageName: '학습',
             appBarButtons: Row(
@@ -33,7 +33,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
             ),
           ),
           // Expanded로 flex 추가, 빈 공간 꽉 채움
-          // 바디 부분
+          // *********************************바디 부분
           Expanded(
             child: Container(
               decoration: BoxDecoration(

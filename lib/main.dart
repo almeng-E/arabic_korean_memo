@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      title: '나만의 작은 아랍어',
       home: MainPageFormat(),
     );
   }

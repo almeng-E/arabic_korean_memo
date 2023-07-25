@@ -16,7 +16,7 @@ class _MainPageSettingsState extends State<MainPageSettings> {
     return SizedBox.expand(
       child: Column(
         children: [
-          // 상단 앱 바
+          // *********************************상단 앱 바
           const MainPageAppBar(
             pageName: '설정',
             appBarButtons: Row(
@@ -30,7 +30,7 @@ class _MainPageSettingsState extends State<MainPageSettings> {
           ),
 
           // Expanded로 flex 추가, 빈 공간 꽉 채움
-          // 바디 부분
+          // *********************************바디 부분
           Expanded(
             child: Container(
               decoration: BoxDecoration(
