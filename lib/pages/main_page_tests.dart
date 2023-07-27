@@ -1,7 +1,5 @@
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/layouts/app_bar.dart';
-import 'package:arabic_korean_memo/themes/my_icons.dart';
 
 class MainPageTests extends StatefulWidget {
   const MainPageTests({super.key});
@@ -13,35 +11,58 @@ class MainPageTests extends StatefulWidget {
 class _MainPageTestsState extends State<MainPageTests> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
+      decoration: const BoxDecoration(
+        color: mainPink,
+      ),
       child: Column(
         children: [
-          // *********************************상단 앱 바
-          const MainPageAppBar(
-            pageName: '테스트',
-            appBarButtons: Row(
+          SizedBox(
+            height: 100,
+            child: Row(
               children: [
-                Icon(
-                  CustomIcon.sliders,
-                  size: 23,
+                Container(
+                  width: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2, color: Colors.red),
+                    color: tmpBlue,
+                  ),
                 ),
-                Icon(
-                  CustomIcon.shuffle,
-                  size: 23,
+                Container(
+                  width: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2, color: Colors.red),
+                    color: tmpGreen,
+                  ),
+                ),
+                Container(
+                  width: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2, color: Colors.red),
+                    color: tmpOrange,
+                  ),
+                ),
+                Container(
+                  width: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2, color: Colors.red),
+                    color: tmpRed,
+                  ),
                 ),
               ],
             ),
           ),
-
-          // Expanded로 flex 추가, 빈 공간 꽉 채움
-          // *********************************바디 부분
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 10, color: Colors.red),
-                color: mainMint,
-              ),
+          const SizedBox(
+            height: 22,
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2, color: Colors.red),
+              color: Colors.amber,
             ),
+            child: const Text('테스트 CARDS'),
           ),
         ],
       ),
