@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/layouts/color_buttons.dart';
-import 'package:arabic_korean_memo/layouts/word_cards.dart';
-import 'package:arabic_korean_memo/themes/my_colors.dart';
+import 'package:arabic_korean_memo/layouts/w_color_buttons.dart';
+import 'package:arabic_korean_memo/layouts/w_word_cards.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
 class MainPageWords extends StatefulWidget {
@@ -47,25 +46,14 @@ class _MainPageWordsState extends State<MainPageWords> {
         width: double.infinity,
         height: double.infinity,
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
-        decoration: const BoxDecoration(
-          color: mainMint,
-        ),
-        child: Column(
+        child: const Column(
           children: [
             // ********************************* 색전환 버튼들
-            const ColorButtons(),
-            const SizedBox(
+            ColorButtons(),
+            SizedBox(
               height: 22,
             ),
-            // ###################Expanded 는임시용
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.red),
-                ),
-                child: const WordCards(),
-              ),
-            ),
+            WordCards(),
           ],
         ),
       ),

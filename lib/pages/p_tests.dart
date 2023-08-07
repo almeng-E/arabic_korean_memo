@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/layouts/color_buttons.dart';
+import 'package:arabic_korean_memo/layouts/w_color_buttons.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 

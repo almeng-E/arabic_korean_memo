@@ -14,3 +14,4 @@ const Color tmpOrange = Color(0xfff5b700);
 const Color tmpGreen = Color(0xff03dd5e);
 const Color tmpBlue = Color(0xff00a1e4);
 const Color tmpPink = Color(0xfff51aa4);
+const Color hermesOrange = Color(0xfff37021);

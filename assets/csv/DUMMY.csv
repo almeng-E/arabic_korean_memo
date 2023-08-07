@@ -1,0 +1,6 @@
+﻿word_id,arabic_word,korean_meaning,page,grammatical_type,is_memorized,root,info
+1,سلام,안녕하세요,10,Noun,A,س ل م,Greeting
+2,كتاب,책,15,Noun,A,ك ت ب,Book
+3,علم,학문,20,Noun,B,ع ل م,Knowledge
+4,طاولة,책상,25,Noun,A,ط و ل,Table
+5,تفاحة,사과,30,Noun,C,ت ف ح,Apple
