@@ -1,6 +1,6 @@
+import 'package:arabic_korean_memo/layouts/w_menu_card.dart';
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/layouts/w_color_buttons.dart';
-import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
 class MainPageTests extends StatefulWidget {
@@ -33,27 +33,31 @@ class _MainPageTestsState extends State<MainPageTests> {
           ),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
-        decoration: const BoxDecoration(
-          color: mainMint,
-        ),
+      body: const Padding(
+        padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Column(
           children: [
             // ********************************* 색전환 버튼들
-            const ColorButtons(),
-            const SizedBox(
+            ColorButtons(),
+            // 빈 공간 SPACING
+            SizedBox(
               height: 22,
             ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.red),
-                color: Colors.amber,
-              ),
-              child: const Text('테스트 CARDS'),
-            ),
+            Column(
+              children: <Widget>[
+                MenuCard(
+                    menuIcon: Icon(CustomIcon.fourChoice),
+                    menuName: '사지 선다 테스트',
+                    description: '설명 ~~~~~~~~~~'),
+                SizedBox(
+                  height: 10,
+                ),
+                MenuCard(
+                    menuIcon: Icon(CustomIcon.print),
+                    menuName: '문제지 생성기',
+                    description: '설명~~~~~~~~~@@@@@@@@@@@@@@@@@@@@@@@@@@@'),
+              ],
+            )
           ],
         ),
       ),

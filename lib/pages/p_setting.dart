@@ -23,13 +23,8 @@ class _MainPageSettingsState extends State<MainPageSettings> {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
+      body: Padding(
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
-        decoration: const BoxDecoration(
-          color: mainBlue,
-        ),
         child: Container(
           decoration: BoxDecoration(
             border: Border.all(width: 2, color: Colors.red),

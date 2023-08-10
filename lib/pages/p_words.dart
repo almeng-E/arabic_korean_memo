@@ -45,11 +45,9 @@ class _MainPageWordsState extends State<MainPageWords> {
           ),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
-        child: const Column(
+      body: const Padding(
+        padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
+        child: Column(
           children: [
             // ********************************* 색전환 버튼들 나중에 수정
             ColorButtons(),
