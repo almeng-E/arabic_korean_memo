@@ -15,7 +15,10 @@ class _MainPageSettingsState extends State<MainPageSettings> {
       appBar: AppBar(
         title: const Text(
           '설정',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+          ),
         ),
         elevation: 0,
         backgroundColor: Colors.white,

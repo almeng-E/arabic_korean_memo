@@ -17,7 +17,10 @@ class _MainPageTestsState extends State<MainPageTests> {
       appBar: AppBar(
         title: const Text(
           '테스트',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+          ),
         ),
         elevation: 0,
         backgroundColor: Colors.white,

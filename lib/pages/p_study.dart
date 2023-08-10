@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/layouts/w_color_buttons.dart';
+import 'package:arabic_korean_memo/layouts/w_study_card_menu.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
@@ -17,7 +18,10 @@ class _MainPageStudyState extends State<MainPageStudy> {
       appBar: AppBar(
         title: const Text(
           '학습',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+          ),
         ),
         elevation: 0,
         backgroundColor: Colors.white,
@@ -37,20 +41,14 @@ class _MainPageStudyState extends State<MainPageStudy> {
         decoration: const BoxDecoration(
           color: mainMint,
         ),
-        child: Column(
+        child: const Column(
           children: [
             // ********************************* 색전환 버튼들
-            const ColorButtons(),
-            const SizedBox(
+            ColorButtons(),
+            SizedBox(
               height: 22,
             ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.red),
-                color: Colors.amber,
-              ),
-              child: const Text('학습 CARDS'),
-            ),
+            StudyCardMenu(),
           ],
         ),
       ),

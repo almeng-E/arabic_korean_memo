@@ -17,7 +17,10 @@ class _MainPageWordsState extends State<MainPageWords> {
       appBar: AppBar(
         title: const Text(
           '단어장',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+          ),
         ),
         elevation: 0,
         backgroundColor: Colors.white,
@@ -48,11 +51,12 @@ class _MainPageWordsState extends State<MainPageWords> {
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: const Column(
           children: [
-            // ********************************* 색전환 버튼들
+            // ********************************* 색전환 버튼들 나중에 수정
             ColorButtons(),
             SizedBox(
               height: 22,
             ),
+            // 단어장 위젯
             WordCards(),
           ],
         ),

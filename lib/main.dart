@@ -35,7 +35,7 @@ class MainPages extends StatefulWidget {
 class _MainPagesState extends State<MainPages> {
   int _currentIndex = 0;
 
-  final List _pages = [
+  final List<Widget> _pages = [
     const MainPageWords(),
     const MainPageStudy(),
     const MainPageTests(),
