@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/layouts/w_color_buttons.dart';
+import 'package:arabic_korean_memo/layouts/w_memorized_button.dart';
 import 'package:arabic_korean_memo/layouts/w_word_cards.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
@@ -26,13 +26,13 @@ class _MainPageWordsState extends State<MainPageWords> {
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-            icon: const Icon(CustomIcon.search),
+            icon: const Icon(Icons.search_rounded),
             color: Colors.black,
             tooltip: '검색',
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(CustomIcon.shuffle),
+            icon: const Icon(Icons.shuffle_rounded),
             color: Colors.black,
             tooltip: '셔플',
             onPressed: () {},
@@ -50,7 +50,7 @@ class _MainPageWordsState extends State<MainPageWords> {
         child: Column(
           children: [
             // ********************************* 색전환 버튼들 나중에 수정
-            ColorButtons(),
+            MemorizedButton(),
             SizedBox(
               height: 22,
             ),

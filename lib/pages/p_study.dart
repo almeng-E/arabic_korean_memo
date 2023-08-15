@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/layouts/w_color_buttons.dart';
+import 'package:arabic_korean_memo/layouts/w_memorized_button.dart';
 import 'package:arabic_korean_memo/layouts/w_menu_card.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
@@ -38,49 +38,48 @@ class _MainPageStudyState extends State<MainPageStudy> {
         child: Column(
           children: [
             // ********************************* 색전환 버튼들
-            const ColorButtons(),
+            const MemorizedButton(),
             // 빈 공간 SPACING
             const SizedBox(
               height: 22,
             ),
             // 메뉴 버튼들
             Table(
-              children: const <TableRow>[
+              children: <TableRow>[
                 TableRow(
                   children: <Widget>[
                     MenuCard(
-                      menuIcon: Icon(
-                        CustomIcon.flashCard,
-                      ),
-                      menuName: '플래시 카드 ?',
+                      menuIcon: const Icon(Icons.style_outlined),
+                      menuName: '플래시 카드',
                       description: '메뉴 설명들 ~~~~~~~~~~~~~~~~',
+                      route: '/flashcards',
                     ),
                     MenuCard(
-                      menuIcon: Icon(
-                        CustomIcon.wordBlink,
-                      ),
+                      menuIcon:
+                          const Icon(Icons.local_fire_department_outlined),
                       menuName: '단어 멍',
                       description: '단어를 보면서 멍을 때려요',
+                      route: '/wordblink',
                     ),
                   ],
                 ),
                 TableRow(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: MenuCard(
-                        menuIcon: Icon(
-                          CustomIcon.grammar,
-                        ),
+                        menuIcon: const Icon(Icons.mosque_outlined),
+                        // OR  icons.school,  account_balance
                         menuName: '문법 요약',
                         description: '헷갈리는 문법 사항을 빠르게 체크해요',
+                        route: '/grammar',
                       ),
                     ),
-                    SizedBox.shrink(), // Empty cell
+                    const SizedBox.shrink(), // Empty cell
                   ],
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

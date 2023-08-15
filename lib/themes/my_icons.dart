@@ -25,76 +25,14 @@ class CustomIcon {
   static const _kFontFam = 'CustomIcon';
   static const String? _kFontPkg = null;
 
-  static const IconData check =
-      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData plus =
-      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData minus =
-      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pin =
-      IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData show =
-      IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hide =
-      IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mpSettings =
       IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData play =
-      IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pause =
-      IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData toNext =
-      IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData toBefore =
-      IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mpWords =
       IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData print =
-      IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mpStudy =
       IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData search =
-      IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData clip =
-      IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData shuffle =
-      IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData leftBig =
-      IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData downOpen =
-      IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData fourChoice =
-      IconData(0xe813, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkFilled =
-      IconData(0xe814, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData toLibrary =
-      IconData(0xe815, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData wordBlink =
-      IconData(0xe816, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData clock =
-      IconData(0xe817, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData checkEmpty =
-      IconData(0xf096, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData flashCard =
-      IconData(0xf0ca, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData magic =
-      IconData(0xf0d0, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData lightbulb =
-      IconData(0xf0eb, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mpTest =
       IconData(0xf0f6, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData angleDown =
-      IconData(0xf107, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData spinner =
-      IconData(0xf110, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData toBookshelf =
-      IconData(0xf115, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData grammar =
-      IconData(0xf19c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData pdf =
-      IconData(0xf1c1, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData sliders =
       IconData(0xf1de, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData showAndHide =
-      IconData(0xf2a8, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

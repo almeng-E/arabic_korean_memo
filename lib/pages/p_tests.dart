@@ -1,6 +1,6 @@
 import 'package:arabic_korean_memo/layouts/w_menu_card.dart';
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/layouts/w_color_buttons.dart';
+import 'package:arabic_korean_memo/layouts/w_memorized_button.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
 class MainPageTests extends StatefulWidget {
@@ -33,29 +33,34 @@ class _MainPageTestsState extends State<MainPageTests> {
           ),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Column(
           children: [
             // ********************************* 색전환 버튼들
-            ColorButtons(),
+            const MemorizedButton(),
             // 빈 공간 SPACING
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
             Column(
               children: <Widget>[
                 MenuCard(
-                    menuIcon: Icon(CustomIcon.fourChoice),
-                    menuName: '사지 선다 테스트',
-                    description: '설명 ~~~~~~~~~~'),
-                SizedBox(
+                  menuIcon: const Icon(Icons.widgets_outlined),
+                  // OR  Icons.dashboard_outlined
+                  menuName: '사지 선다 테스트',
+                  description: '설명 ~~~~~~~~~~',
+                  route: '/fourchoice',
+                ),
+                const SizedBox(
                   height: 10,
                 ),
                 MenuCard(
-                    menuIcon: Icon(CustomIcon.print),
-                    menuName: '문제지 생성기',
-                    description: '설명~~~~~~~~~@@@@@@@@@@@@@@@@@@@@@@@@@@@'),
+                  menuIcon: const Icon(Icons.picture_as_pdf_outlined),
+                  menuName: '문제지 생성기',
+                  description: '설명~~~~~~~~~@@@@@@@@@@@@@@@@@@@@@@@@@@@',
+                  route: '/testgenerator',
+                ),
               ],
             )
           ],

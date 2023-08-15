@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 class MenuCard extends StatefulWidget {
   final Icon menuIcon;
-  final String menuName, description;
+  final String menuName, description, route;
+  final BorderRadius _baseBorderRadius = BorderRadius.circular(20);
 
-  const MenuCard({
+  MenuCard({
     super.key,
     required this.menuIcon,
     required this.menuName,
     required this.description,
+    required this.route,
   });
 
   @override
@@ -22,41 +24,52 @@ class _MenuCardState extends State<MenuCard> {
     return Card(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: widget._baseBorderRadius,
       ),
       color: hermesOrange,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 40,
-                  height: 50,
-                  child: FittedBox(
-                    child: widget.menuIcon,
+      child: InkWell(
+        borderRadius: widget._baseBorderRadius,
+        onTap: () {
+          Navigator.pushNamed(context, widget.route);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 40,
+                    height: 50,
+                    child: FittedBox(
+                      child: widget.menuIcon,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  widget.menuName,
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(
-                widget.description,
-                textAlign: TextAlign.left,
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Text(
+                    widget.menuName,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+              Container(
+                height: 70,
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  widget.description,
+                  textAlign: TextAlign.left,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

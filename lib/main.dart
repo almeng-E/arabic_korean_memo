@@ -3,6 +3,12 @@ import 'package:arabic_korean_memo/pages/p_setting.dart';
 import 'package:arabic_korean_memo/pages/p_study.dart';
 import 'package:arabic_korean_memo/pages/p_tests.dart';
 import 'package:arabic_korean_memo/pages/p_words.dart';
+import 'package:arabic_korean_memo/pages/pp_flash_cards.dart';
+import 'package:arabic_korean_memo/pages/pp_four_choice.dart';
+import 'package:arabic_korean_memo/pages/pp_test_generator.dart';
+import 'package:arabic_korean_memo/pages/pp_word_blink.dart';
+import 'package:arabic_korean_memo/pages/pp_grammar.dart';
+
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
@@ -16,10 +22,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: '나만의 작은 아랍어',
-      home: MainPages(),
+      home: const MainPages(),
+      routes: {
+        '/flashcards': (context) => const FlashCards(),
+        '/wordblink': (context) => const WordBlink(),
+        '/grammar': (context) => const Grammar(),
+        '/fourchoice': (context) => const FourChoice(),
+        '/testgenerator': (context) => const TestGenerator(),
+      },
     );
   }
 }

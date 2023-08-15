@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 
-class ColorButtons extends StatelessWidget {
-  const ColorButtons({
+class MemorizedButton extends StatelessWidget {
+  const MemorizedButton({
     super.key,
   });
 
@@ -24,13 +24,6 @@ class ColorButtons extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(width: 2, color: Colors.red),
               color: tmpGreen,
-            ),
-          ),
-          Container(
-            width: 60,
-            decoration: BoxDecoration(
-              border: Border.all(width: 2, color: Colors.red),
-              color: tmpOrange,
             ),
           ),
           Container(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/themes/my_colors.dart';
 
 class MainPageSettings extends StatefulWidget {
   const MainPageSettings({super.key});
