@@ -1,7 +1,7 @@
-import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:csv/csv.dart';
+import 'package:arabic_korean_memo/themes/my_colors.dart';
+import 'package:arabic_korean_memo/widgets/w_csv_to_item.dart';
 
 class WordCards extends StatefulWidget {
   const WordCards({super.key});
@@ -11,8 +11,7 @@ class WordCards extends StatefulWidget {
 }
 
 class _WordCardsState extends State<WordCards> {
-  // 사용될 아이템 리스트 _data 생성
-  List<Item> _data = [];
+  List<Item> _data = []; // List of items
 
   @override
   void initState() {
@@ -39,11 +38,9 @@ class _WordCardsState extends State<WordCards> {
 
   Widget _buildPanel() {
     return ExpansionPanelList.radio(
-      // dividerColor: Colors.amber, 색깔 구분선
       expandedHeaderPadding: EdgeInsets.zero,
       children: _data.map<ExpansionPanelRadio>((Item item) {
         return ExpansionPanelRadio(
-          // 임시 컬러
           backgroundColor: hermesOrange,
           canTapOnHeader: true,
           value: item.wordId,
@@ -125,67 +122,4 @@ class _WordCardsState extends State<WordCards> {
       }).toList(),
     );
   }
-}
-
-// Item 이라는 클래스 선언
-class Item {
-  Item({
-    required this.wordId,
-    required this.arabicWord,
-    required this.koreanMeaning,
-    required this.page,
-    required this.grammaticalType,
-    required this.isMemorized,
-    required this.root,
-    required this.info,
-  });
-  int wordId, page;
-  String arabicWord, koreanMeaning, grammaticalType, root, info, isMemorized;
-}
-
-// Item을 요소로 가지는 List 생성(genereate)
-List<Item> generateItemsFromCsv(List<Map<String, dynamic>> csvData) {
-  return csvData.map((data) {
-    return Item(
-      wordId: data['word_id'],
-      arabicWord: data['arabic_word'],
-      koreanMeaning: data['korean_meaning'],
-      page: data['page'],
-      grammaticalType: data['grammatical_type'],
-      isMemorized: data['is_memorized'], // Assuming 'A' indicates memorized
-      root: data['root'],
-      info: data['info'],
-    );
-  }).toList();
-}
-
-Future<List<Item>> parseCsvAndGenerateItems(String csvContent) async {
-  List<List<dynamic>> csvRows = const CsvToListConverter().convert(csvContent);
-  List<Map<String, dynamic>> csvData = [];
-
-  for (var row in csvRows.skip(1)) {
-    csvData.add({
-      'word_id': row[0],
-      'arabic_word': row[1],
-      'korean_meaning': row[2],
-      'page': row[3],
-      'grammatical_type': row[4],
-      'is_memorized': row[5],
-      'root': row[6],
-      'info': row[7],
-    });
-  }
-
-  return csvData.map((data) {
-    return Item(
-      wordId: data['word_id'],
-      arabicWord: data['arabic_word'],
-      koreanMeaning: data['korean_meaning'],
-      page: data['page'],
-      grammaticalType: data['grammatical_type'],
-      isMemorized: data['is_memorized'],
-      root: data['root'],
-      info: data['info'],
-    );
-  }).toList();
 }
