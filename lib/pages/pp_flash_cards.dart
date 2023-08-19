@@ -15,6 +15,7 @@ class _FlashCardsState extends State<FlashCards> {
 
   late final SwipableStackController _controller;
   void _listenController() => setState(() {});
+  bool _showArabic = true; // Initially show Arabic meaning
 
   @override
   void initState() {
@@ -67,41 +68,78 @@ class _FlashCardsState extends State<FlashCards> {
         ],
       ),
       body: Center(
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: SwipableStack(
-                  detectableSwipeDirections: const {
-                    SwipeDirection.left,
-                    SwipeDirection.right,
-                  },
-                  controller: _controller,
-                  stackClipBehaviour: Clip.none, // ??
-                  horizontalSwipeThreshold: 0.8,
+        child: SizedBox(
+          height: 400,
+          width: 300,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: SwipableStack(
+                    itemCount: _data.length,
+                    detectableSwipeDirections: const {
+                      SwipeDirection.left,
+                      SwipeDirection.right,
+                    },
+                    controller: _controller,
+                    stackClipBehaviour: Clip.none, // ??
+                    horizontalSwipeThreshold: 0.8,
 
-                  builder: (context, swipeProperty) {
-                    final index = swipeProperty.index;
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.amber,
-                        border: Border.all(
-                          color: Colors.red,
-                          width: 5,
+                    onSwipeCompleted: (index, direction) {
+                      if (direction == SwipeDirection.left) {
+                        print('Left $index'); // Print 'Left' when swiped left
+                      } else if (direction == SwipeDirection.right) {
+                        print(
+                            'Right $index'); // Print 'Right' when swiped right
+                      }
+                    },
+                    builder: (context, swipeProperty) {
+                      final index = swipeProperty.index;
+                      // if (index == _data.length + 1) {
+                      //   print('done');
+                      //   return Container(); // Leave this empty for now
+                      // }
+                      final item = _data[index];
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _showArabic = !_showArabic;
+                          });
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.amber,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 5,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          height: 400,
+                          width: 300,
+                          child: Center(
+                            child: Text(
+                              _showArabic
+                                  ? item.arabicWord
+                                  : item.koreanMeaning,
+                              style: const TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      height: 400,
-                      width: 300,
-                      child: Center(
-                        child: Text('TEXT@@@@@@@@@@@ $index'),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
