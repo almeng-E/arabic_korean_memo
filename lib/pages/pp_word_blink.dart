@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// =========================================================================
 class WordBlink extends StatelessWidget {
   const WordBlink({super.key});
 

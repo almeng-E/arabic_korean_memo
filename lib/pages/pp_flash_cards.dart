@@ -1,9 +1,12 @@
-import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+
 import 'package:arabic_korean_memo/widgets/w_csv_to_item.dart';
+import 'package:arabic_korean_memo/themes/my_colors.dart';
+
 import 'package:swipable_stack/swipable_stack.dart';
 
+// =========================================================================
 class FlashCards extends StatefulWidget {
   const FlashCards({super.key});
 
@@ -12,25 +15,40 @@ class FlashCards extends StatefulWidget {
 }
 
 class _FlashCardsState extends State<FlashCards> {
-  List<Item> _data = []; // List of items
-
+  // List of items
+  List<Item> _data = [];
+  // Initially show Arabic meaning
+  bool _showArabic = true;
   late final SwipableStackController _controller;
   void _listenController() => setState(() {});
-  bool _showArabic = true; // Initially show Arabic meaning
 
   @override
   void initState() {
     super.initState();
-    _loadCsvData();
+    _loadCsvData('assets/csv/DUMMY.csv');
 
     _controller = SwipableStackController()..addListener(_listenController);
   }
 
-  Future<void> _loadCsvData() async {
-    String csvContent = await rootBundle.loadString('assets/csv/DUMMY.csv');
+  Future<void> _loadCsvData(String csvFilePath) async {
+    String csvContent = await rootBundle.loadString(csvFilePath);
     List<Item> items = await parseCsvAndGenerateItems(csvContent);
+    items.shuffle();
+
     setState(() {
       _data = items;
+    });
+  }
+
+  // @@@@@@@@@@@@@@@@@ data 리로딩 일단 보류
+  // Future<void> _reloadData() async {
+  //   await _loadCsvData('assets/csv/DUMMY.csv'); // Data reloading
+  // }
+
+  void _refreshCards() {
+    setState(() {
+      _data.shuffle();
+      _controller.currentIndex = 0;
     });
   }
 
@@ -59,14 +77,6 @@ class _FlashCardsState extends State<FlashCards> {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shuffle_rounded),
-            color: Colors.black,
-            tooltip: '셔플',
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Center(
         child: Column(
@@ -92,21 +102,31 @@ class _FlashCardsState extends State<FlashCards> {
 
                         overlayBuilder: (context, swipeProperty) {
                           if (swipeProperty.direction == SwipeDirection.right &&
-                              swipeProperty.swipeProgress > 0.75) {
-                            return const Positioned(
-                              top: 16,
-                              right: 16,
-                              child: Icon(Icons.circle_outlined,
-                                  size: 32, color: Colors.green),
+                              swipeProperty.swipeProgress > 0.5) {
+                            return const Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: EdgeInsets.all(15.0),
+                                child: Icon(
+                                  Icons.circle_outlined,
+                                  size: 50,
+                                  color: Colors.green,
+                                ),
+                              ),
                             );
                           } else if (swipeProperty.direction ==
                                   SwipeDirection.left &&
-                              swipeProperty.swipeProgress > 0.75) {
-                            return const Positioned(
-                              top: 16,
-                              left: 16,
-                              child: Icon(Icons.clear_outlined,
-                                  size: 32, color: Colors.red),
+                              swipeProperty.swipeProgress > 0.5) {
+                            return const Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: EdgeInsets.all(15.0),
+                                child: Icon(
+                                  Icons.clear_outlined,
+                                  size: 50,
+                                  color: Colors.red,
+                                ),
+                              ),
                             );
                           } else {
                             return const SizedBox();
@@ -124,11 +144,12 @@ class _FlashCardsState extends State<FlashCards> {
                         },
                         builder: (context, swipeProperty) {
                           final index = swipeProperty.index;
-                          // if (index == _data.length + 1) {
-                          //   print('done');
-                          //   return Container(); // Leave this empty for now
-                          // }
+                          if (index >= _data.length) {
+                            // If index exceeds the data length, return an empty container
+                            return const SizedBox();
+                          }
                           final item = _data[index];
+
                           return GestureDetector(
                             onTap: () {
                               setState(() {
@@ -198,9 +219,7 @@ class _FlashCardsState extends State<FlashCards> {
                     icon: const Icon(Icons.refresh_outlined),
                     iconSize: 40,
                     color: Colors.white,
-                    onPressed: () {
-                      //refresh
-                    },
+                    onPressed: _refreshCards,
                   ),
                 ),
                 Ink(

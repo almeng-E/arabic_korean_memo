@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 
+// =========================================================================
 class MemorizedButton extends StatelessWidget {
   const MemorizedButton({
     super.key,

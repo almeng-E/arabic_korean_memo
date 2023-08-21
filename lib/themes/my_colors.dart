@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// =========================================================================
 const Color mainWhite = Color(0xffffeaec);
 
 // 버튼 컬러

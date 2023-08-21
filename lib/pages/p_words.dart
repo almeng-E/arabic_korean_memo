@@ -3,6 +3,7 @@ import 'package:arabic_korean_memo/themes/my_icons.dart';
 import 'package:arabic_korean_memo/widgets/w_memorized_button.dart';
 import 'package:arabic_korean_memo/widgets/w_item_to_word_card.dart';
 
+// =========================================================================
 class MainPageWords extends StatefulWidget {
   const MainPageWords({super.key});
 

@@ -3,6 +3,7 @@ import 'package:arabic_korean_memo/widgets/w_memorized_button.dart';
 import 'package:arabic_korean_memo/widgets/w_menu_card.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
+// =========================================================================
 class MainPageStudy extends StatefulWidget {
   const MainPageStudy({super.key});
 

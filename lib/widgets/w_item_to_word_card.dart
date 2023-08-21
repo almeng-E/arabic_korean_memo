@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/widgets/w_csv_to_item.dart';
 
+// =========================================================================
 class WordCards extends StatefulWidget {
   const WordCards({super.key});
 
