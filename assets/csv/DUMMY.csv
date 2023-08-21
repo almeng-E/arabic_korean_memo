@@ -4,3 +4,18 @@
 3,علم,학문,20,Noun,B,ع ل م,Knowledge
 4,طاولة,책상,25,Noun,A,ط و ل,Table
 5,تفاحة,사과,30,Noun,C,ت ف ح,Apple
+6,بيت,집,35,Noun,A,ب ي ت,House
+7,سيارة,자동차,40,Noun,A,س ي ا ر,Car
+8,مدرسة,학교,45,Noun,B,م د ر س,School
+9,شمس,태양,50,Noun,C,ش م س,Sun
+10,قمر,달,55,Noun,C,ق م ر,Moon
+11,زهرة,꽃,60,Noun,A,ز ه ر,Flower
+12,ماء,물,65,Noun,A,م ا ء,Water
+13,جبل,산,70,Noun,A,ج ب ل,Mountain
+14,سماء,하늘,75,Noun,B,س م اء,Sky
+15,شجرة,나무,80,Noun,A,ش ج ر,Tree
+16,بحر,바다,85,Noun,A,ب ح ر,Sea
+17,نجمة,별,90,Noun,A,ن ج م,Star
+18,عشاء,저녁 식사,95,Noun,C,ع ش اء,Dinner
+19,فناء,마당,100,Noun,A,ف ن اء,Courtyard
+20,صحراء,사막,105,Noun,A,ص ح ر,Desert
