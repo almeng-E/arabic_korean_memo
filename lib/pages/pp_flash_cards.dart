@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
-import 'package:arabic_korean_memo/widgets/w_csv_to_item.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
+import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 
 import 'package:swipable_stack/swipable_stack.dart';
 
@@ -15,8 +14,7 @@ class FlashCards extends StatefulWidget {
 }
 
 class _FlashCardsState extends State<FlashCards> {
-  // List of items
-  List<Item> _data = [];
+  List<Item> data = [];
   // Initially show Arabic meaning
   bool _showArabic = true;
   late final SwipableStackController _controller;
@@ -25,31 +23,8 @@ class _FlashCardsState extends State<FlashCards> {
   @override
   void initState() {
     super.initState();
-    _loadCsvData('assets/csv/DUMMY.csv');
-
+    data = ItemDataManager().items;
     _controller = SwipableStackController()..addListener(_listenController);
-  }
-
-  Future<void> _loadCsvData(String csvFilePath) async {
-    String csvContent = await rootBundle.loadString(csvFilePath);
-    List<Item> items = await parseCsvAndGenerateItems(csvContent);
-    items.shuffle();
-
-    setState(() {
-      _data = items;
-    });
-  }
-
-  // @@@@@@@@@@@@@@@@@ data 리로딩 일단 보류
-  // Future<void> _reloadData() async {
-  //   await _loadCsvData('assets/csv/DUMMY.csv'); // Data reloading
-  // }
-
-  void _refreshCards() {
-    setState(() {
-      _data.shuffle();
-      _controller.currentIndex = 0;
-    });
   }
 
   @override
@@ -58,6 +33,13 @@ class _FlashCardsState extends State<FlashCards> {
     _controller
       ..removeListener(_listenController)
       ..dispose();
+  }
+
+  void _refreshCards() {
+    setState(() {
+      data.shuffle();
+      _controller.currentIndex = 0;
+    });
   }
 
   @override
@@ -91,7 +73,7 @@ class _FlashCardsState extends State<FlashCards> {
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: SwipableStack(
-                        itemCount: _data.length,
+                        itemCount: data.length,
                         detectableSwipeDirections: const {
                           SwipeDirection.left,
                           SwipeDirection.right,
@@ -144,11 +126,11 @@ class _FlashCardsState extends State<FlashCards> {
                         },
                         builder: (context, swipeProperty) {
                           final index = swipeProperty.index;
-                          if (index >= _data.length) {
+                          if (index >= data.length) {
                             // If index exceeds the data length, return an empty container
                             return const SizedBox();
                           }
-                          final item = _data[index];
+                          final item = data[index];
 
                           return GestureDetector(
                             onTap: () {

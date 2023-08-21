@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:arabic_korean_memo/pages/p_setting.dart';
 import 'package:arabic_korean_memo/pages/p_study.dart';
 import 'package:arabic_korean_memo/pages/p_tests.dart';
@@ -12,7 +13,11 @@ import 'package:arabic_korean_memo/pages/pp_grammar.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
-void main() {
+import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ItemDataManager().loadData();
   runApp(const MyApp());
 }
 

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:arabic_korean_memo/themes/my_colors.dart';
-import 'package:arabic_korean_memo/widgets/w_csv_to_item.dart';
+import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 
 // =========================================================================
 class WordCards extends StatefulWidget {
@@ -13,20 +12,12 @@ class WordCards extends StatefulWidget {
 }
 
 class _WordCardsState extends State<WordCards> {
-  List<Item> _data = []; // List of items
+  List<Item> data = [];
 
   @override
   void initState() {
     super.initState();
-    _loadCsvData();
-  }
-
-  Future<void> _loadCsvData() async {
-    String csvContent = await rootBundle.loadString('assets/csv/DUMMY.csv');
-    List<Item> items = await parseCsvAndGenerateItems(csvContent);
-    setState(() {
-      _data = items;
-    });
+    data = ItemDataManager().items;
   }
 
   @override
@@ -41,7 +32,7 @@ class _WordCardsState extends State<WordCards> {
   Widget _buildPanel() {
     return ExpansionPanelList.radio(
       expandedHeaderPadding: EdgeInsets.zero,
-      children: _data.map<ExpansionPanelRadio>((Item item) {
+      children: data.map<ExpansionPanelRadio>((Item item) {
         return ExpansionPanelRadio(
           backgroundColor: hermesOrange,
           canTapOnHeader: true,

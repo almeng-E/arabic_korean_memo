@@ -1,6 +1,9 @@
+import 'package:flutter/services.dart' show rootBundle;
+
 import 'package:csv/csv.dart';
 
 // =========================================================================
+// make Item class
 class Item {
   Item({
     required this.wordId,
@@ -17,6 +20,7 @@ class Item {
   String arabicWord, koreanMeaning, grammaticalType, root, info, isMemorized;
 }
 
+// csv to <List<Item>>
 Future<List<Item>> parseCsvAndGenerateItems(String csvContent) async {
   List<List<dynamic>> csvRows = const CsvToListConverter().convert(csvContent);
   List<Map<String, dynamic>> csvData = [];
@@ -46,4 +50,26 @@ Future<List<Item>> parseCsvAndGenerateItems(String csvContent) async {
       info: data['info'],
     );
   }).toList();
+}
+
+// SINGLETON DATA MANAGER 객체
+class ItemDataManager {
+  static final ItemDataManager _instance = ItemDataManager._internal();
+
+  factory ItemDataManager() {
+    return _instance;
+  }
+
+  ItemDataManager._internal();
+
+  List<Item> _data = [];
+// 나중에 modify 하기 : 여러 csvFilePath 받을 경우
+  Future<void> loadData() async {
+    if (_data.isEmpty) {
+      String csvContent = await rootBundle.loadString('assets/csv/DUMMY.csv');
+      _data = await parseCsvAndGenerateItems(csvContent);
+    }
+  }
+
+  List<Item> get items => _data;
 }
