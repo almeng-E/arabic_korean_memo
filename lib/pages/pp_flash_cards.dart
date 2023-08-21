@@ -136,10 +136,10 @@ class _FlashCardsState extends State<FlashCards> {
                         onSwipeCompleted: (index, direction) {
                           if (direction == SwipeDirection.left) {
                             print(
-                                'Left $index'); // Print 'Left' when swiped left
+                                'Left! $index'); // Print 'Left' when swiped left
                           } else if (direction == SwipeDirection.right) {
                             print(
-                                'Right $index'); // Print 'Right' when swiped right
+                                'Right! $index'); // Print 'Right' when swiped right
                           }
                         },
                         builder: (context, swipeProperty) {
