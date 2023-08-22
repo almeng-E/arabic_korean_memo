@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 import 'package:arabic_korean_memo/widgets/w_memorized_button.dart';
-import 'package:arabic_korean_memo/widgets/w_word_cards.dart';
+import 'package:arabic_korean_memo/widgets/w_vocab_list.dart';
 
 // =========================================================================
 class MainPageWords extends StatefulWidget {
@@ -13,7 +13,7 @@ class MainPageWords extends StatefulWidget {
 }
 
 class _MainPageWordsState extends State<MainPageWords> {
-  final _wordCards = const WordCards();
+  final _wordCards = const VocabList();
 
   @override
   Widget build(BuildContext context) {
