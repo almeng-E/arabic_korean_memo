@@ -80,9 +80,9 @@ class _FlashCardsState extends State<FlashCards> {
                           SwipeDirection.right,
                         },
                         controller: _controller,
-                        stackClipBehaviour: Clip.none, // ??
+                        stackClipBehaviour: Clip.none,
                         horizontalSwipeThreshold: 0.8,
-
+                        swipeAnchor: SwipeAnchor.top,
                         overlayBuilder: (context, swipeProperty) {
                           if (swipeProperty.direction == SwipeDirection.right &&
                               swipeProperty.swipeProgress > 0.5) {
@@ -115,7 +115,6 @@ class _FlashCardsState extends State<FlashCards> {
                             return const SizedBox();
                           }
                         },
-
                         onSwipeCompleted: (index, direction) {
                           if (direction == SwipeDirection.left) {
                             _showArabic = true;
