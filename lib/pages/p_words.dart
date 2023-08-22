@@ -51,18 +51,18 @@ class _MainPageWordsState extends State<MainPageWords> {
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // ********************************* 색전환 버튼들 나중에 수정
-              const MemorizedButton(),
-              const SizedBox(
-                height: 22,
-              ),
-              // 단어장 위젯
-              _wordCards,
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            // ********************************* 색전환 버튼들 나중에 수정
+            const MemorizedButton(),
+            const SizedBox(
+              height: 22,
+            ),
+            // 단어장 위젯
+            _wordCards,
+          ],
         ),
       ),
     );
