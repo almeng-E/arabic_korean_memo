@@ -5,9 +5,7 @@ import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 
 // =========================================================================
 class WordCards extends StatefulWidget {
-  const WordCards({
-    super.key,
-  });
+  const WordCards({super.key});
 
   @override
   State<WordCards> createState() => _WordCardsState();
@@ -22,16 +20,12 @@ class _WordCardsState extends State<WordCards> {
     data = ItemDataManager().items;
   }
 
-  // void shuffleCards() {
-  //   setState(() {
-  //     data = ItemDataManager().getShuffledItems();
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: _buildPanel(),
+    return SingleChildScrollView(
+      child: Container(
+        child: _buildPanel(),
+      ),
     );
   }
 
@@ -55,12 +49,13 @@ class _WordCardsState extends State<WordCards> {
                   Text(item.koreanMeaning),
                 ],
               ),
+              // tileColor: hermesOrange,
             );
           },
           body: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            // color: Colors.amber,
+            // color: hermesOrange.withOpacity(0.9),
             child: Table(
               columnWidths: const <int, TableColumnWidth>{
                 0: FixedColumnWidth(100),
@@ -69,51 +64,9 @@ class _WordCardsState extends State<WordCards> {
               },
               textBaseline: TextBaseline.ideographic,
               children: <TableRow>[
-                TableRow(
-                  children: <Widget>[
-                    const TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text('품사'),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text(item.grammaticalType),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: <Widget>[
-                    const TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text('어근'),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text(item.root),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: <Widget>[
-                    const TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text('추가정보'),
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    TableCell(
-                      verticalAlignment: TableCellVerticalAlignment.middle,
-                      child: Text('${item.info} blah blah blah'),
-                    ),
-                  ],
-                ),
+                _buildTableRow('품사', item.grammaticalType),
+                _buildTableRow('어근', item.root),
+                _buildTableRow('추가정보', '${item.info} blah blah blah'),
               ],
             ),
           ),
@@ -121,4 +74,20 @@ class _WordCardsState extends State<WordCards> {
       }).toList(),
     );
   }
+}
+
+TableRow _buildTableRow(String title, String content) {
+  return TableRow(
+    children: <Widget>[
+      TableCell(
+        verticalAlignment: TableCellVerticalAlignment.middle,
+        child: Text(title),
+      ),
+      const SizedBox(height: 32),
+      TableCell(
+        verticalAlignment: TableCellVerticalAlignment.middle,
+        child: Text(content),
+      ),
+    ],
+  );
 }

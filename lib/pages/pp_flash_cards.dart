@@ -17,6 +17,7 @@ class _FlashCardsState extends State<FlashCards> {
   List<Item> data = [];
   // Initially show Arabic meaning
   bool _showArabic = true;
+
   late final SwipableStackController _controller;
   void _listenController() => setState(() {});
 
@@ -117,9 +118,11 @@ class _FlashCardsState extends State<FlashCards> {
 
                         onSwipeCompleted: (index, direction) {
                           if (direction == SwipeDirection.left) {
+                            _showArabic = true;
                             print(
                                 'Left! $index'); // Print 'Left' when swiped left
                           } else if (direction == SwipeDirection.right) {
+                            _showArabic = true;
                             print(
                                 'Right! $index'); // Print 'Right' when swiped right
                           }
