@@ -62,14 +62,21 @@ class ItemDataManager {
 
   ItemDataManager._internal();
 
-  List<Item> _data = [];
+  List<Item> _originalItems = [];
+
 // 나중에 modify 하기 : 여러 csvFilePath 받을 경우
   Future<void> loadData() async {
-    if (_data.isEmpty) {
+    if (_originalItems.isEmpty) {
       String csvContent = await rootBundle.loadString('assets/csv/DUMMY.csv');
-      _data = await parseCsvAndGenerateItems(csvContent);
+      _originalItems = await parseCsvAndGenerateItems(csvContent);
     }
   }
 
-  List<Item> get items => _data;
+  List<Item> getShuffledItems() {
+    List<Item> shuffledItems = List.from(_originalItems);
+    shuffledItems.shuffle();
+    return shuffledItems;
+  }
+
+  List<Item> get items => _originalItems;
 }

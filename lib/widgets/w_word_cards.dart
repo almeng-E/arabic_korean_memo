@@ -5,7 +5,9 @@ import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 
 // =========================================================================
 class WordCards extends StatefulWidget {
-  const WordCards({super.key});
+  const WordCards({
+    super.key,
+  });
 
   @override
   State<WordCards> createState() => _WordCardsState();
@@ -20,12 +22,16 @@ class _WordCardsState extends State<WordCards> {
     data = ItemDataManager().items;
   }
 
+  // void shuffleCards() {
+  //   setState(() {
+  //     data = ItemDataManager().getShuffledItems();
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        child: _buildPanel(),
-      ),
+    return Container(
+      child: _buildPanel(),
     );
   }
 

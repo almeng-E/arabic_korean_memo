@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 import 'package:arabic_korean_memo/widgets/w_memorized_button.dart';
 import 'package:arabic_korean_memo/widgets/w_word_cards.dart';
@@ -12,6 +13,8 @@ class MainPageWords extends StatefulWidget {
 }
 
 class _MainPageWordsState extends State<MainPageWords> {
+  final _wordCards = const WordCards();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,18 +49,20 @@ class _MainPageWordsState extends State<MainPageWords> {
           ),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
-        child: Column(
-          children: [
-            // ********************************* 색전환 버튼들 나중에 수정
-            MemorizedButton(),
-            SizedBox(
-              height: 22,
-            ),
-            // 단어장 위젯
-            WordCards(),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // ********************************* 색전환 버튼들 나중에 수정
+              const MemorizedButton(),
+              const SizedBox(
+                height: 22,
+              ),
+              // 단어장 위젯
+              _wordCards,
+            ],
+          ),
         ),
       ),
     );

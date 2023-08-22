@@ -37,7 +37,7 @@ class _FlashCardsState extends State<FlashCards> {
 
   void _refreshCards() {
     setState(() {
-      data.shuffle();
+      data = ItemDataManager().getShuffledItems();
       _controller.currentIndex = 0;
     });
   }
@@ -187,6 +187,7 @@ class _FlashCardsState extends State<FlashCards> {
                     icon: const Icon(Icons.clear_outlined),
                     iconSize: 40,
                     color: Colors.white,
+                    tooltip: '모르는 단어에요',
                     onPressed: () {
                       _controller.next(swipeDirection: SwipeDirection.left);
                     },
@@ -201,6 +202,7 @@ class _FlashCardsState extends State<FlashCards> {
                     icon: const Icon(Icons.refresh_outlined),
                     iconSize: 40,
                     color: Colors.white,
+                    tooltip: '다시하기 / 셔플',
                     onPressed: _refreshCards,
                   ),
                 ),
@@ -213,6 +215,7 @@ class _FlashCardsState extends State<FlashCards> {
                     icon: const Icon(Icons.circle_outlined),
                     iconSize: 37,
                     color: Colors.white,
+                    tooltip: '아는 단어에요',
                     onPressed: () {
                       _controller.next(swipeDirection: SwipeDirection.right);
                     },
