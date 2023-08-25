@@ -16,11 +16,17 @@ enum DataCategory {
 }
 
 class MemorizedButton extends StatelessWidget {
-  final Function(DataCategory) onCategorySelected;
+  final int totalItemCount;
+  final int memorizedItemCount;
+  final int notMemorizedItemCount;
+  // final Function(DataCategory) onCategorySelected;
 
   const MemorizedButton({
     super.key,
-    required this.onCategorySelected,
+    required this.totalItemCount,
+    required this.memorizedItemCount,
+    required this.notMemorizedItemCount,
+    // required this.onCategorySelected,
   });
 
   @override
@@ -36,7 +42,7 @@ class MemorizedButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             ClickableContainer(
-              label: 'A',
+              label: '$totalItemCount',
               labelIcon: const Text(
                 '전체',
                 style: TextStyle(
@@ -44,31 +50,31 @@ class MemorizedButton extends StatelessWidget {
                   fontSize: _Constants.labelFontSize,
                 ),
               ),
-              onTap: () {
-                onCategorySelected(DataCategory.total);
-              },
+              // onTap: () {
+              //   onCategorySelected(DataCategory.total);
+              // },
             ),
             ClickableContainer(
-              label: 'B',
+              label: '$memorizedItemCount',
               labelIcon: const Icon(
                 Icons.circle_outlined,
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
-              onTap: () {
-                onCategorySelected(DataCategory.memorized);
-              },
+              // onTap: () {
+              //   onCategorySelected(DataCategory.memorized);
+              // },
             ),
             ClickableContainer(
-              label: 'C',
+              label: '$notMemorizedItemCount',
               labelIcon: const Icon(
                 Icons.clear_outlined,
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
-              onTap: () {
-                onCategorySelected(DataCategory.notMemorized);
-              },
+              // onTap: () {
+              //   onCategorySelected(DataCategory.notMemorized);
+              // },
             ),
           ],
         ),
@@ -80,19 +86,19 @@ class MemorizedButton extends StatelessWidget {
 class ClickableContainer extends StatelessWidget {
   final String label;
   final Widget labelIcon;
-  final VoidCallback onTap;
+  // final VoidCallback onTap;
 
   const ClickableContainer({
     super.key,
     required this.label,
     required this.labelIcon,
-    required this.onTap,
+    // required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {}, //onTap,
       child: Column(
         children: [
           Container(
@@ -127,4 +133,4 @@ class ClickableContainer extends StatelessWidget {
   }
 }
 
-// 이후 data에 접근하는 법 배워야함. 버튼 클릭 시 해당 데이터만 접근하여 다시 렌더링하도록
+//TODO 이후 data에 접근하는 법 배워야함. 버튼 클릭 시 해당 데이터만 접근하여 다시 렌더링하도록

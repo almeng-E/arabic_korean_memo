@@ -12,13 +12,13 @@ class MainPageStudy extends StatefulWidget {
 }
 
 class _MainPageStudyState extends State<MainPageStudy> {
-  DataCategory selectedCategory = DataCategory.total;
+  // DataCategory selectedCategory = DataCategory.total;
 
-  void handleCategoryChange(DataCategory category) {
-    setState(() {
-      selectedCategory = category;
-    });
-  }
+  // void handleCategoryChange(DataCategory category) {
+  //   setState(() {
+  //     selectedCategory = category;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +47,13 @@ class _MainPageStudyState extends State<MainPageStudy> {
         child: Column(
           children: [
             // ********************************* 색전환 버튼들
-            MemorizedButton(
-              onCategorySelected: handleCategoryChange,
+            const MemorizedButton(
+              totalItemCount: 100, // Replace with actual total item count
+              memorizedItemCount:
+                  75, // Replace with actual memorized item count
+              notMemorizedItemCount:
+                  25, // Replace with actual not memorized item count
+              // onCategorySelected: handleCategoryChange,
             ),
             // 빈 공간 SPACING
             const SizedBox(

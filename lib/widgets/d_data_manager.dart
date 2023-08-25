@@ -74,7 +74,7 @@ class ItemDataManager {
 
   List<Item> _originalItems = [];
 
-// 나중에 modify 하기 : 여러 csvFilePath 받을 경우
+// TODO 나중에 modify 하기 : 여러 csvFilePath 받을 경우
   Future<void> loadData() async {
     if (_originalItems.isEmpty) {
       String csvContent = await rootBundle.loadString('assets/csv/DUMMY.csv');
@@ -100,5 +100,17 @@ class ItemDataManager {
       default:
         return _originalItems;
     }
+  }
+
+  int getTotalItemCount() {
+    return _originalItems.length;
+  }
+
+  int getMemorizedItemCount() {
+    return _originalItems.where((item) => item.isMemorized).length;
+  }
+
+  int getNotMemorizedItemCount() {
+    return _originalItems.where((item) => !item.isMemorized).length;
   }
 }

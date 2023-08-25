@@ -13,14 +13,6 @@ class MainPageWords extends StatefulWidget {
 }
 
 class _MainPageWordsState extends State<MainPageWords> {
-  DataCategory selectedCategory = DataCategory.total;
-
-  void handleCategoryChange(DataCategory category) {
-    setState(() {
-      selectedCategory = category;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,23 +47,26 @@ class _MainPageWordsState extends State<MainPageWords> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
+      body: const Padding(
+        padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             // ********************************* 색전환 버튼들 나중에 수정
             MemorizedButton(
-              onCategorySelected: handleCategoryChange,
+              totalItemCount: 100, // Replace with actual total item count
+              memorizedItemCount:
+                  75, // Replace with actual memorized item count
+              notMemorizedItemCount:
+                  25, // Replace with actual not memorized item count
+              // onCategorySelected: handleCategoryChange,
             ),
-            const SizedBox(
+            SizedBox(
               height: 22,
             ),
             // 단어장 위젯
-            VocabList(
-              selectedCategory: selectedCategory,
-            )
+            VocabList()
           ],
         ),
       ),
