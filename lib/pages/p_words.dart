@@ -13,7 +13,13 @@ class MainPageWords extends StatefulWidget {
 }
 
 class _MainPageWordsState extends State<MainPageWords> {
-  final _wordCards = const VocabList();
+  DataCategory selectedCategory = DataCategory.total;
+
+  void handleCategoryChange(DataCategory category) {
+    setState(() {
+      selectedCategory = category;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +62,16 @@ class _MainPageWordsState extends State<MainPageWords> {
           mainAxisSize: MainAxisSize.max,
           children: [
             // ********************************* 색전환 버튼들 나중에 수정
-            const MemorizedButton(),
+            MemorizedButton(
+              onCategorySelected: handleCategoryChange,
+            ),
             const SizedBox(
               height: 22,
             ),
             // 단어장 위젯
-            _wordCards,
+            VocabList(
+              selectedCategory: selectedCategory,
+            )
           ],
         ),
       ),

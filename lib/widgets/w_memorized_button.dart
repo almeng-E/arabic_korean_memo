@@ -9,16 +9,27 @@ class _Constants {
   static const double iconSize = 24;
 }
 
+enum DataCategory {
+  total,
+  memorized,
+  notMemorized,
+}
+
 class MemorizedButton extends StatelessWidget {
-  const MemorizedButton({super.key});
+  final Function(DataCategory) onCategorySelected;
+
+  const MemorizedButton({
+    super.key,
+    required this.onCategorySelected,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       height: _Constants.containerHeight + _Constants.containerWidth,
       width: _Constants.containerWidth * 3,
       child: ClipRRect(
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(20),
         ),
         child: Row(
@@ -26,29 +37,38 @@ class MemorizedButton extends StatelessWidget {
           children: [
             ClickableContainer(
               label: 'A',
-              labelIcon: Text(
+              labelIcon: const Text(
                 '전체',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: _Constants.labelFontSize,
                 ),
               ),
+              onTap: () {
+                onCategorySelected(DataCategory.total);
+              },
             ),
             ClickableContainer(
               label: 'B',
-              labelIcon: Icon(
+              labelIcon: const Icon(
                 Icons.circle_outlined,
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
+              onTap: () {
+                onCategorySelected(DataCategory.memorized);
+              },
             ),
             ClickableContainer(
               label: 'C',
-              labelIcon: Icon(
+              labelIcon: const Icon(
                 Icons.clear_outlined,
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
+              onTap: () {
+                onCategorySelected(DataCategory.notMemorized);
+              },
             ),
           ],
         ),
@@ -60,20 +80,19 @@ class MemorizedButton extends StatelessWidget {
 class ClickableContainer extends StatelessWidget {
   final String label;
   final Widget labelIcon;
+  final VoidCallback onTap;
 
   const ClickableContainer({
     super.key,
     required this.label,
     required this.labelIcon,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Handle container click here
-        print('Clicked on $label');
-      },
+      onTap: onTap,
       child: Column(
         children: [
           Container(

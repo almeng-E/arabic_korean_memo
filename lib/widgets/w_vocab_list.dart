@@ -1,11 +1,16 @@
-import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:flutter/material.dart';
-
+import 'package:arabic_korean_memo/themes/my_colors.dart';
+import 'package:arabic_korean_memo/widgets/w_memorized_button.dart';
 import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 
 // =========================================================================
+
 class VocabList extends StatefulWidget {
-  const VocabList({super.key});
+  final DataCategory selectedCategory;
+  const VocabList({
+    super.key,
+    required this.selectedCategory,
+  });
 
   @override
   State<VocabList> createState() => _VocabListState();
@@ -17,7 +22,25 @@ class _VocabListState extends State<VocabList> {
   @override
   void initState() {
     super.initState();
-    data = ItemDataManager().items;
+    _updateData(widget.selectedCategory);
+  }
+
+  @override
+  void didUpdateWidget(covariant VocabList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.selectedCategory != widget.selectedCategory) {
+      _updateData(widget.selectedCategory);
+    }
+  }
+
+  void _updateData(DataCategory category) {
+    if (category == DataCategory.memorized) {
+      data = ItemDataManager().getItemsByCategory(ItemCategory.memorized);
+    } else if (category == DataCategory.notMemorized) {
+      data = ItemDataManager().getItemsByCategory(ItemCategory.notMemorized);
+    } else {
+      data = ItemDataManager().items;
+    }
   }
 
   @override

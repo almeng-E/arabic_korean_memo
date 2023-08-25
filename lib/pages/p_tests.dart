@@ -12,6 +12,14 @@ class MainPageTests extends StatefulWidget {
 }
 
 class _MainPageTestsState extends State<MainPageTests> {
+  DataCategory selectedCategory = DataCategory.total;
+
+  void handleCategoryChange(DataCategory category) {
+    setState(() {
+      selectedCategory = category;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +47,9 @@ class _MainPageTestsState extends State<MainPageTests> {
         child: Column(
           children: [
             // ********************************* 색전환 버튼들
-            const MemorizedButton(),
+            MemorizedButton(
+              onCategorySelected: handleCategoryChange,
+            ),
             // 빈 공간 SPACING
             const SizedBox(
               height: 22,

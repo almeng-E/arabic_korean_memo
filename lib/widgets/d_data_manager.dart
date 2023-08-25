@@ -17,7 +17,15 @@ class Item {
   });
 
   int wordId, page;
-  String arabicWord, koreanMeaning, grammaticalType, root, info, isMemorized;
+  String arabicWord, koreanMeaning, grammaticalType, root, info;
+  bool isMemorized;
+}
+
+// 카테고리 나누는 enum
+enum ItemCategory {
+  total,
+  memorized,
+  notMemorized,
 }
 
 // csv to <List<Item>>
@@ -26,13 +34,15 @@ Future<List<Item>> parseCsvAndGenerateItems(String csvContent) async {
   List<Map<String, dynamic>> csvData = [];
 
   for (var row in csvRows.skip(1)) {
+    bool isMemorized = row[5] == '1';
+    int page = int.tryParse(row[3].toString()) ?? 0;
     csvData.add({
       'word_id': row[0],
       'arabic_word': row[1],
       'korean_meaning': row[2],
-      'page': row[3],
+      'page': page,
       'grammatical_type': row[4],
-      'is_memorized': row[5],
+      'is_memorized': isMemorized,
       'root': row[6],
       'info': row[7],
     });
@@ -79,4 +89,16 @@ class ItemDataManager {
   }
 
   List<Item> get items => _originalItems;
+
+// 카테고리 분류
+  List<Item> getItemsByCategory(ItemCategory category) {
+    switch (category) {
+      case ItemCategory.memorized:
+        return _originalItems.where((item) => item.isMemorized).toList();
+      case ItemCategory.notMemorized:
+        return _originalItems.where((item) => !item.isMemorized).toList();
+      default:
+        return _originalItems;
+    }
+  }
 }
