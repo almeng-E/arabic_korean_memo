@@ -5,10 +5,11 @@ import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 // =========================================================================
 
 class VocabList extends StatefulWidget {
+  final List<Item> items;
   // final DataCategory selectedCategory;
   const VocabList({
     super.key,
-    // required this.selectedCategory,
+    required this.items,
   });
 
   @override
@@ -16,22 +17,14 @@ class VocabList extends StatefulWidget {
 }
 
 class _VocabListState extends State<VocabList> {
-  List<Item> data = [];
-
-  @override
-  void initState() {
-    super.initState();
-    data = ItemDataManager().items;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
         physics: const BouncingScrollPhysics(),
-        itemCount: data.length,
+        itemCount: widget.items.length,
         itemBuilder: (context, index) {
-          return _BuildVocabList(data[index]);
+          return _BuildVocabList(widget.items[index]);
         },
         shrinkWrap: true,
         separatorBuilder: (context, index) {

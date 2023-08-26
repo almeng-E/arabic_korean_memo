@@ -3,16 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 import 'package:arabic_korean_memo/widgets/w_memorized_button.dart';
 import 'package:arabic_korean_memo/widgets/w_vocab_list.dart';
+import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 
 // =========================================================================
-class MainPageWords extends StatefulWidget {
-  const MainPageWords({super.key});
+class MainPageVocabs extends StatefulWidget {
+  const MainPageVocabs({super.key});
 
   @override
-  State<MainPageWords> createState() => _MainPageWordsState();
+  State<MainPageVocabs> createState() => _MainPageVocabsState();
 }
 
-class _MainPageWordsState extends State<MainPageWords> {
+class _MainPageVocabsState extends State<MainPageVocabs> {
+  final ItemDataManager _itemDataManager = ItemDataManager();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    await _itemDataManager.loadData();
+    setState(() {}); // Refresh the UI after data is loaded
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,26 +61,26 @@ class _MainPageWordsState extends State<MainPageWords> {
           ),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.fromLTRB(14, 14, 14, 0),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             // ********************************* 색전환 버튼들 나중에 수정
             MemorizedButton(
-              totalItemCount: 100, // Replace with actual total item count
-              memorizedItemCount:
-                  75, // Replace with actual memorized item count
+              totalItemCount: _itemDataManager.getTotalItemCount(),
+              memorizedItemCount: _itemDataManager.getMemorizedItemCount(),
               notMemorizedItemCount:
-                  25, // Replace with actual not memorized item count
-              // onCategorySelected: handleCategoryChange,
+                  _itemDataManager.getNotMemorizedItemCount(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 22,
             ),
             // 단어장 위젯
-            VocabList()
+            VocabList(
+              items: _itemDataManager.items,
+            )
           ],
         ),
       ),

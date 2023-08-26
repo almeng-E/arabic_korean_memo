@@ -9,24 +9,22 @@ class _Constants {
   static const double iconSize = 24;
 }
 
-enum DataCategory {
-  total,
-  memorized,
-  notMemorized,
-}
+// enum DataCategory {
+//   total,
+//   memorized,
+//   notMemorized,
+// }
 
 class MemorizedButton extends StatelessWidget {
   final int totalItemCount;
   final int memorizedItemCount;
   final int notMemorizedItemCount;
-  // final Function(DataCategory) onCategorySelected;
 
   const MemorizedButton({
     super.key,
     required this.totalItemCount,
     required this.memorizedItemCount,
     required this.notMemorizedItemCount,
-    // required this.onCategorySelected,
   });
 
   @override
@@ -50,9 +48,7 @@ class MemorizedButton extends StatelessWidget {
                   fontSize: _Constants.labelFontSize,
                 ),
               ),
-              // onTap: () {
-              //   onCategorySelected(DataCategory.total);
-              // },
+              onTap: () {},
             ),
             ClickableContainer(
               label: '$memorizedItemCount',
@@ -61,9 +57,7 @@ class MemorizedButton extends StatelessWidget {
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
-              // onTap: () {
-              //   onCategorySelected(DataCategory.memorized);
-              // },
+              onTap: () {},
             ),
             ClickableContainer(
               label: '$notMemorizedItemCount',
@@ -72,9 +66,7 @@ class MemorizedButton extends StatelessWidget {
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
-              // onTap: () {
-              //   onCategorySelected(DataCategory.notMemorized);
-              // },
+              onTap: () {},
             ),
           ],
         ),
@@ -86,13 +78,13 @@ class MemorizedButton extends StatelessWidget {
 class ClickableContainer extends StatelessWidget {
   final String label;
   final Widget labelIcon;
-  // final VoidCallback onTap;
+  final VoidCallback onTap;
 
   const ClickableContainer({
     super.key,
     required this.label,
     required this.labelIcon,
-    // required this.onTap,
+    required this.onTap,
   });
 
   @override

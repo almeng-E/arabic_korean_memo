@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/pages/p_setting.dart';
 import 'package:arabic_korean_memo/pages/p_study.dart';
 import 'package:arabic_korean_memo/pages/p_tests.dart';
-import 'package:arabic_korean_memo/pages/p_words.dart';
+import 'package:arabic_korean_memo/pages/p_vocabs.dart';
 import 'package:arabic_korean_memo/pages/pp_flash_cards.dart';
 import 'package:arabic_korean_memo/pages/pp_four_choice.dart';
 import 'package:arabic_korean_memo/pages/pp_test_generator.dart';
@@ -54,7 +54,7 @@ class _MainPagesState extends State<MainPages> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    const MainPageWords(),
+    const MainPageVocabs(),
     const MainPageStudy(),
     const MainPageTests(),
     const MainPageSettings(),

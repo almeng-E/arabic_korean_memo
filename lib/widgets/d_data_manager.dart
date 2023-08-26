@@ -31,86 +31,68 @@ enum ItemCategory {
 // csv to <List<Item>>
 Future<List<Item>> parseCsvAndGenerateItems(String csvContent) async {
   List<List<dynamic>> csvRows = const CsvToListConverter().convert(csvContent);
-  List<Map<String, dynamic>> csvData = [];
+  List<Item> items = [];
 
   for (var row in csvRows.skip(1)) {
-    bool isMemorized = row[5] == '1';
-    int page = int.tryParse(row[3].toString()) ?? 0;
-    csvData.add({
-      'word_id': row[0],
-      'arabic_word': row[1],
-      'korean_meaning': row[2],
-      'page': page,
-      'grammatical_type': row[4],
-      'is_memorized': isMemorized,
-      'root': row[6],
-      'info': row[7],
-    });
+    final isMemorized = row[5] == 1;
+    final page = int.tryParse(row[3].toString()) ?? 0;
+
+    items.add(
+      Item(
+        wordId: row[0],
+        arabicWord: row[1],
+        koreanMeaning: row[2],
+        page: page,
+        grammaticalType: row[4],
+        isMemorized: isMemorized,
+        root: row[6],
+        info: row[7],
+      ),
+    );
   }
 
-  return csvData.map((data) {
-    return Item(
-      wordId: data['word_id'],
-      arabicWord: data['arabic_word'],
-      koreanMeaning: data['korean_meaning'],
-      page: data['page'],
-      grammaticalType: data['grammatical_type'],
-      isMemorized: data['is_memorized'],
-      root: data['root'],
-      info: data['info'],
-    );
-  }).toList();
+  return items;
 }
 
 // SINGLETON DATA MANAGER 객체
 class ItemDataManager {
   static final ItemDataManager _instance = ItemDataManager._internal();
-
-  factory ItemDataManager() {
-    return _instance;
-  }
+  factory ItemDataManager() => _instance;
 
   ItemDataManager._internal();
 
   List<Item> _originalItems = [];
+  List<Item> _totalItemList = [];
+  List<Item> _memorizedItemList = [];
+  List<Item> _notMemorizedItemList = [];
 
 // TODO 나중에 modify 하기 : 여러 csvFilePath 받을 경우
   Future<void> loadData() async {
     if (_originalItems.isEmpty) {
       String csvContent = await rootBundle.loadString('assets/csv/DUMMY.csv');
       _originalItems = await parseCsvAndGenerateItems(csvContent);
+
+      _totalItemList = List.from(_originalItems);
+      _memorizedItemList =
+          _originalItems.where((item) => item.isMemorized).toList();
+      _notMemorizedItemList =
+          _originalItems.where((item) => !item.isMemorized).toList();
     }
   }
 
   List<Item> getShuffledItems() {
-    List<Item> shuffledItems = List.from(_originalItems);
-    shuffledItems.shuffle();
+    List<Item> shuffledItems = List.from(_originalItems)..shuffle();
     return shuffledItems;
   }
 
   List<Item> get items => _originalItems;
+  List<Item> get totalItemList => _totalItemList;
+  List<Item> get memorizedItemList => _memorizedItemList;
+  List<Item> get notMemorizedItemList => _notMemorizedItemList;
 
-// 카테고리 분류
-  List<Item> getItemsByCategory(ItemCategory category) {
-    switch (category) {
-      case ItemCategory.memorized:
-        return _originalItems.where((item) => item.isMemorized).toList();
-      case ItemCategory.notMemorized:
-        return _originalItems.where((item) => !item.isMemorized).toList();
-      default:
-        return _originalItems;
-    }
-  }
+  int getTotalItemCount() => _originalItems.length;
 
-  int getTotalItemCount() {
-    return _originalItems.length;
-  }
+  int getMemorizedItemCount() => _memorizedItemList.length;
 
-  int getMemorizedItemCount() {
-    return _originalItems.where((item) => item.isMemorized).length;
-  }
-
-  int getNotMemorizedItemCount() {
-    return _originalItems.where((item) => !item.isMemorized).length;
-  }
+  int getNotMemorizedItemCount() => _notMemorizedItemList.length;
 }
