@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
-import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
+import 'package:arabic_korean_memo/widgets/d_item_class.dart';
 
 // =========================================================================
 

@@ -1,25 +1,9 @@
 import 'package:flutter/services.dart' show rootBundle;
-
+import 'package:arabic_korean_memo/widgets/d_item_class.dart';
 import 'package:csv/csv.dart';
 
 // =========================================================================
 // make Item class
-class Item {
-  Item({
-    required this.wordId,
-    required this.arabicWord,
-    required this.koreanMeaning,
-    required this.page,
-    required this.grammaticalType,
-    required this.isMemorized,
-    required this.root,
-    required this.info,
-  });
-
-  int wordId, page;
-  String arabicWord, koreanMeaning, grammaticalType, root, info;
-  bool isMemorized;
-}
 
 // 카테고리 나누는 enum
 enum ItemCategory {

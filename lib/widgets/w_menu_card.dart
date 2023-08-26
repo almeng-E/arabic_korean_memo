@@ -31,7 +31,10 @@ class _MenuCardState extends State<MenuCard> {
       child: InkWell(
         borderRadius: widget._baseBorderRadius,
         onTap: () {
-          Navigator.pushNamed(context, widget.route);
+          Navigator.pushNamed(
+            context,
+            widget.route,
+          );
         },
         child: Padding(
           padding: const EdgeInsets.all(16),
