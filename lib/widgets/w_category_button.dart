@@ -9,22 +9,22 @@ class _Constants {
   static const double iconSize = 24;
 }
 
-// enum DataCategory {
-//   total,
-//   memorized,
-//   notMemorized,
-// }
-
-class MemorizedButton extends StatelessWidget {
+class CategoryButton extends StatelessWidget {
   final int totalItemCount;
   final int memorizedItemCount;
   final int notMemorizedItemCount;
+  final VoidCallback onTapTotal;
+  final VoidCallback onTapMemorized;
+  final VoidCallback onTapNotMemorized;
 
-  const MemorizedButton({
+  const CategoryButton({
     super.key,
     required this.totalItemCount,
     required this.memorizedItemCount,
     required this.notMemorizedItemCount,
+    required this.onTapTotal,
+    required this.onTapMemorized,
+    required this.onTapNotMemorized,
   });
 
   @override
@@ -48,7 +48,7 @@ class MemorizedButton extends StatelessWidget {
                   fontSize: _Constants.labelFontSize,
                 ),
               ),
-              onTap: () {},
+              onTap: onTapTotal,
             ),
             ClickableContainer(
               label: '$memorizedItemCount',
@@ -57,7 +57,7 @@ class MemorizedButton extends StatelessWidget {
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
-              onTap: () {},
+              onTap: onTapMemorized,
             ),
             ClickableContainer(
               label: '$notMemorizedItemCount',
@@ -66,7 +66,7 @@ class MemorizedButton extends StatelessWidget {
                 color: Colors.white,
                 size: _Constants.iconSize,
               ),
-              onTap: () {},
+              onTap: onTapNotMemorized,
             ),
           ],
         ),
@@ -90,7 +90,7 @@ class ClickableContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {}, //onTap,
+      onTap: onTap,
       child: Column(
         children: [
           Container(

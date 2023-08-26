@@ -1,7 +1,8 @@
 import 'package:arabic_korean_memo/widgets/w_menu_card.dart';
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/widgets/w_memorized_button.dart';
+import 'package:arabic_korean_memo/widgets/w_category_button.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
+import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
 
 // =========================================================================
 class MainPageTests extends StatefulWidget {
@@ -12,13 +13,27 @@ class MainPageTests extends StatefulWidget {
 }
 
 class _MainPageTestsState extends State<MainPageTests> {
-  // DataCategory selectedCategory = DataCategory.total;
+  final ItemDataManager _itemDataManager = ItemDataManager();
+  List<Item> _currentItemList = [];
 
-  // void handleCategoryChange(DataCategory category) {
-  //   setState(() {
-  //     selectedCategory = category;
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    await _itemDataManager.loadData();
+    setState(() {
+      _currentItemList = _itemDataManager.totalItemList;
+    }); // Refresh the UI after data is loaded
+  }
+
+  void _updateCurrentItemList(List<Item> newList) {
+    setState(() {
+      _currentItemList = newList;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +62,20 @@ class _MainPageTestsState extends State<MainPageTests> {
         child: Column(
           children: [
             // ********************************* 색전환 버튼들
-            const MemorizedButton(
-              totalItemCount: 100, // Replace with actual total item count
-              memorizedItemCount:
-                  75, // Replace with actual memorized item count
+            CategoryButton(
+              totalItemCount: _itemDataManager.getTotalItemCount(),
+              memorizedItemCount: _itemDataManager.getMemorizedItemCount(),
               notMemorizedItemCount:
-                  25, // Replace with actual not memorized item count
-              // onCategorySelected: handleCategoryChange,
+                  _itemDataManager.getNotMemorizedItemCount(),
+              onTapTotal: () {
+                _updateCurrentItemList(_itemDataManager.totalItemList);
+              },
+              onTapMemorized: () {
+                _updateCurrentItemList(_itemDataManager.memorizedItemList);
+              },
+              onTapNotMemorized: () {
+                _updateCurrentItemList(_itemDataManager.notMemorizedItemList);
+              },
             ),
             // 빈 공간 SPACING
             const SizedBox(
