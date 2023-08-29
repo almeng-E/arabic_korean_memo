@@ -1,9 +1,12 @@
-import 'package:arabic_korean_memo/widgets/w_menu_card.dart';
 import 'package:flutter/material.dart';
-import 'package:arabic_korean_memo/widgets/f_category_button.dart';
+
+import 'package:arabic_korean_memo/data/data_manager.dart';
+import 'package:arabic_korean_memo/data/item_class.dart';
+
 import 'package:arabic_korean_memo/themes/my_icons.dart';
-import 'package:arabic_korean_memo/widgets/d_data_manager.dart';
-import 'package:arabic_korean_memo/widgets/d_item_class.dart';
+
+import 'package:arabic_korean_memo/ui/category_button.dart';
+import 'package:arabic_korean_memo/ui/menu_card.dart';
 
 // =========================================================================
 class MainPageTests extends StatefulWidget {

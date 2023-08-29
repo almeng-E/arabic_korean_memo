@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:arabic_korean_memo/widgets/d_item_class.dart';
 import 'package:csv/csv.dart';
 
+import 'package:arabic_korean_memo/data/item_class.dart';
 // =========================================================================
 // make Item class
 
