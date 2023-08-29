@@ -4,6 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/data/item_class.dart';
 
+import 'package:arabic_korean_memo/pages/screens/pp_flash_cards.dart';
+import 'package:arabic_korean_memo/pages/screens/pp_grammar.dart';
+import 'package:arabic_korean_memo/pages/screens/pp_word_blink.dart';
+
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
 import 'package:arabic_korean_memo/ui/category_button.dart';
@@ -21,6 +25,8 @@ class _MainPageStudyState extends State<MainPageStudy> {
   List<Item> _currentItemList = [];
 
   void _updateCurrentItemList(List<Item> itemList) {
+    Feedback.forTap(context);
+
     setState(() {
       _currentItemList = itemList;
     });
@@ -84,14 +90,14 @@ class _MainPageStudyState extends State<MainPageStudy> {
                           menuName: '플래시 카드',
                           description:
                               '가볍게 넘기면서 외워요. 스와이프 결과가 단어장에는 영향을 주지 않아요.',
-                          route: '/flashcards',
+                          route: const FlashCards(),
                         ),
                         MenuCard(
                           menuIcon:
                               const Icon(Icons.local_fire_department_outlined),
                           menuName: '단어 멍',
                           description: '단어를 보면서 멍을 때려요',
-                          route: '/wordblink',
+                          route: const WordBlink(),
                         ),
                       ],
                     ),
@@ -104,7 +110,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
                             // OR  icons.school,  account_balance
                             menuName: '문법 요약',
                             description: '헷갈리는 문법 사항을 빠르게 체크해요',
-                            route: '/grammar',
+                            route: const Grammar(),
                           ),
                         ),
                         const SizedBox.shrink(), // Empty cell

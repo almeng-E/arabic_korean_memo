@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/data/item_class.dart';
 
+import 'package:arabic_korean_memo/pages/screens/pp_four_choice.dart';
+import 'package:arabic_korean_memo/pages/screens/pp_test_generator.dart';
+
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
 import 'package:arabic_korean_memo/ui/category_button.dart';
@@ -21,6 +24,8 @@ class _MainPageTestsState extends State<MainPageTests> {
   List<Item> _currentItemList = [];
 
   void _updateCurrentItemList(List<Item> itemList) {
+    Feedback.forTap(context);
+
     setState(() {
       _currentItemList = itemList;
     });
@@ -81,7 +86,7 @@ class _MainPageTestsState extends State<MainPageTests> {
                       // OR  Icons.dashboard_outlined
                       menuName: '사지 선다 테스트',
                       description: '설명 ~~~~~~~~~~',
-                      route: '/fourchoice',
+                      route: const FourChoice(),
                     ),
                     const SizedBox(
                       height: 10,
@@ -90,7 +95,7 @@ class _MainPageTestsState extends State<MainPageTests> {
                       menuIcon: const Icon(Icons.picture_as_pdf_outlined),
                       menuName: '문제지 생성기',
                       description: '설명~~~~~~~~~@@@@@@@@@@@@@@@@@@@@@@@@@@@',
-                      route: '/testgenerator',
+                      route: const TestGenerator(),
                     ),
                   ],
                 )

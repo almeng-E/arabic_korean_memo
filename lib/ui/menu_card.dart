@@ -5,7 +5,8 @@ import 'package:arabic_korean_memo/themes/my_colors.dart';
 // =========================================================================
 class MenuCard extends StatefulWidget {
   final Icon menuIcon;
-  final String menuName, description, route;
+  final String menuName, description;
+  final Widget route;
   final BorderRadius _baseBorderRadius = BorderRadius.circular(20);
 
   MenuCard({
@@ -32,9 +33,9 @@ class _MenuCardState extends State<MenuCard> {
       child: InkWell(
         borderRadius: widget._baseBorderRadius,
         onTap: () {
-          Navigator.pushNamed(
+          Navigator.push(
             context,
-            widget.route,
+            MaterialPageRoute(builder: (context) => widget.route),
           );
         },
         child: Padding(

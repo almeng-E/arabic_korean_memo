@@ -21,6 +21,8 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
   List<Item> _currentItemList = [];
 
   void _updateCurrentItemList(List<Item> itemList) {
+    Feedback.forTap(context);
+
     setState(() {
       _currentItemList = itemList;
     });
