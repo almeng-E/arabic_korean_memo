@@ -7,7 +7,7 @@ import 'package:arabic_korean_memo/themes/my_colors.dart';
 
 class VocabList extends StatelessWidget {
   final List<Item> items;
-  // final DataCategory selectedCategory;
+
   const VocabList({
     super.key,
     required this.items,

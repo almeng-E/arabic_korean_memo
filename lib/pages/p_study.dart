@@ -90,7 +90,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
                           menuName: '플래시 카드',
                           description:
                               '가볍게 넘기면서 외워요. 스와이프 결과가 단어장에는 영향을 주지 않아요.',
-                          route: const FlashCards(),
+                          route: FlashCards(items: _currentItemList),
                         ),
                         MenuCard(
                           menuIcon:

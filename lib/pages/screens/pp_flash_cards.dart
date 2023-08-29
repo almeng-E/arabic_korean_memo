@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 
-import 'package:arabic_korean_memo/data/data_manager.dart';
 import 'package:arabic_korean_memo/data/item_class.dart';
 
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 
 // =========================================================================
 class FlashCards extends StatefulWidget {
-  const FlashCards({super.key});
+  final List<Item> items;
+
+  const FlashCards({
+    super.key,
+    required this.items,
+  });
 
   @override
   State<FlashCards> createState() => _FlashCardsState();
 }
 
 class _FlashCardsState extends State<FlashCards> {
-  List<Item> data = [];
+  // List<Item> data = [];
   // Initially show Arabic meaning
   bool _showArabic = true;
 
@@ -25,7 +29,6 @@ class _FlashCardsState extends State<FlashCards> {
   @override
   void initState() {
     super.initState();
-    data = ItemDataManager().items;
     _controller = SwipableStackController()..addListener(_listenController);
   }
 
@@ -37,12 +40,12 @@ class _FlashCardsState extends State<FlashCards> {
       ..dispose();
   }
 
-  void _refreshCards() {
-    setState(() {
-      data = ItemDataManager().getShuffledItems();
-      _controller.currentIndex = 0;
-    });
-  }
+  // void _refreshCards() {
+  //   setState(() {
+  //     data = ItemDataManager().getShuffledItems();
+  //     _controller.currentIndex = 0;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +78,7 @@ class _FlashCardsState extends State<FlashCards> {
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: SwipableStack(
-                        itemCount: data.length,
+                        itemCount: widget.items.length,
                         detectableSwipeDirections: const {
                           SwipeDirection.left,
                           SwipeDirection.right,
@@ -129,11 +132,11 @@ class _FlashCardsState extends State<FlashCards> {
                         },
                         builder: (context, swipeProperty) {
                           final index = swipeProperty.index;
-                          if (index >= data.length) {
+                          if (index >= widget.items.length) {
                             // If index exceeds the data length, return an empty container
                             return const SizedBox();
                           }
-                          final item = data[index];
+                          final item = widget.items[index];
 
                           return GestureDetector(
                             onTap: () {
@@ -206,7 +209,7 @@ class _FlashCardsState extends State<FlashCards> {
                     iconSize: 40,
                     color: Colors.white,
                     tooltip: '다시하기 / 셔플',
-                    onPressed: _refreshCards,
+                    onPressed: () {},
                   ),
                 ),
                 Ink(
