@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:arabic_korean_memo/data/data_manager.dart';
+
 import 'package:arabic_korean_memo/pages/p_setting.dart';
 import 'package:arabic_korean_memo/pages/p_study.dart';
 import 'package:arabic_korean_memo/pages/p_tests.dart';
 import 'package:arabic_korean_memo/pages/p_vocabs.dart';
+
 import 'package:arabic_korean_memo/pages/screens/pp_flash_cards.dart';
 import 'package:arabic_korean_memo/pages/screens/pp_four_choice.dart';
 import 'package:arabic_korean_memo/pages/screens/pp_test_generator.dart';
@@ -12,8 +15,6 @@ import 'package:arabic_korean_memo/pages/screens/pp_grammar.dart';
 
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
-
-import 'package:arabic_korean_memo/data/data_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
