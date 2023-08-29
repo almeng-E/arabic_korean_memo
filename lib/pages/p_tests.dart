@@ -52,8 +52,9 @@ class _MainPageTestsState extends State<MainPageTests> {
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Consumer<ItemProvider>(
           builder: (context, provider, child) {
-            _currentItemList = provider.totalItems;
-
+            if (_currentItemList.isEmpty) {
+              _currentItemList = provider.totalItems;
+            }
             return Column(
               children: [
                 // ********************************* 색전환 버튼들

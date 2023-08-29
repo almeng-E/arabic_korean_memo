@@ -64,8 +64,9 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Consumer<ItemProvider>(
           builder: (context, provider, child) {
-            _currentItemList = provider.totalItems;
-
+            if (_currentItemList.isEmpty) {
+              _currentItemList = provider.totalItems;
+            }
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
