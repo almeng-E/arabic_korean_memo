@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:arabic_korean_memo/data/data_manager.dart';
+import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/data/item_class.dart';
 
 import 'package:arabic_korean_memo/themes/my_icons.dart';
@@ -17,25 +18,11 @@ class MainPageVocabs extends StatefulWidget {
 }
 
 class _MainPageVocabsState extends State<MainPageVocabs> {
-  final ItemDataManager _itemDataManager = ItemDataManager();
   List<Item> _currentItemList = [];
 
-  @override
-  void initState() {
-    super.initState();
-    _loadData();
-  }
-
-  Future<void> _loadData() async {
-    await _itemDataManager.loadData();
+  void _updateCurrentItemList(List<Item> itemList) {
     setState(() {
-      _currentItemList = _itemDataManager.totalItemList;
-    }); // Refresh the UI after data is loaded
-  }
-
-  void _updateCurrentItemList(List<Item> newList) {
-    setState(() {
-      _currentItemList = newList;
+      _currentItemList = itemList;
     });
   }
 
@@ -75,34 +62,35 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            // ********************************* 색전환 버튼들 나중에 수정
-            CategoryButton(
-              totalItemCount: _itemDataManager.getTotalItemCount(),
-              memorizedItemCount: _itemDataManager.getMemorizedItemCount(),
-              notMemorizedItemCount:
-                  _itemDataManager.getNotMemorizedItemCount(),
-              onTapTotal: () {
-                _updateCurrentItemList(_itemDataManager.totalItemList);
-              },
-              onTapMemorized: () {
-                _updateCurrentItemList(_itemDataManager.memorizedItemList);
-              },
-              onTapNotMemorized: () {
-                _updateCurrentItemList(_itemDataManager.notMemorizedItemList);
-              },
-            ),
-            const SizedBox(
-              height: 22,
-            ),
-            // 단어장 위젯
-            VocabList(
-              items: _currentItemList,
-            )
-          ],
+        child: Consumer<ItemProvider>(
+          builder: (context, provider, child) {
+            _currentItemList = provider.totalItems;
+
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                // ********************************* 색전환 버튼들 나중에 수정
+                CategoryButton(
+                  totalItemCount: provider.getTotalItemCount(),
+                  memorizedItemCount: provider.getMemorizedItemCount(),
+                  notMemorizedItemCount: provider.getNotMemorizedItemCount(),
+                  onTapTotal: () {
+                    _updateCurrentItemList(provider.totalItems);
+                  },
+                  onTapMemorized: () {
+                    _updateCurrentItemList(provider.memorizedItems);
+                  },
+                  onTapNotMemorized: () {
+                    _updateCurrentItemList(provider.notMemorizedItems);
+                  },
+                ),
+                const SizedBox(height: 22),
+                // 단어장 위젯
+                VocabList(items: _currentItemList)
+              ],
+            );
+          },
         ),
       ),
     );

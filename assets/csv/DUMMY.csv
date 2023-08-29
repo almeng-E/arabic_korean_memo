@@ -1,11 +1,11 @@
 ﻿word_id,arabic_word,korean_meaning,page,grammatical_type,is_memorized,root,info
 1,سلام,안녕하세요,10,Noun,1,س ل م,Greeting
-2,كتاب,책,15,Noun,1,ك ت ب,Book
+2,كتاب,책,15,Noun,0,ك ت ب,Book
 3,علم,학문,20,Noun,1,ع ل م,Knowledge
 4,طاولة,책상,25,Noun,1,ط و ل,Table
 5,تفاحة,사과,30,Noun,0,ت ف ح,Apple
 6,بيت,집,35,Noun,1,ب ي ت,House
-7,سيارة,자동차,40,Noun,1,س ي ا ر,Car
+7,سيارة,자동차,40,Noun,0,س ي ا ر,Car
 8,مدرسة,학교,45,Noun,1,م د ر س,School
 9,شمس,태양,50,Noun,0,ش م س,Sun
 10,قمر,달,55,Noun,0,ق م ر,Moon
@@ -16,6 +16,6 @@
 15,شجرة,나무,80,Noun,1,ش ج ر,Tree
 16,بحر,바다,85,Noun,1,ب ح ر,Sea
 17,نجمة,별,90,Noun,1,ن ج م,Star
-18,عشاء,저녁 식사,95,Noun,0,ع ش اء,Dinner
+18,عشاء,저녁 식사,95,Noun,1,ع ش اء,Dinner
 19,فناء,마당,100,Noun,1,ف ن اء,Courtyard
 20,صحراء,사막,105,Noun,1,ص ح ر,Desert

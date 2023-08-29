@@ -5,7 +5,7 @@ import 'package:arabic_korean_memo/data/item_class.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 // =========================================================================
 
-class VocabList extends StatefulWidget {
+class VocabList extends StatelessWidget {
   final List<Item> items;
   // final DataCategory selectedCategory;
   const VocabList({
@@ -14,18 +14,13 @@ class VocabList extends StatefulWidget {
   });
 
   @override
-  State<VocabList> createState() => _VocabListState();
-}
-
-class _VocabListState extends State<VocabList> {
-  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
         physics: const BouncingScrollPhysics(),
-        itemCount: widget.items.length,
+        itemCount: items.length,
         itemBuilder: (context, index) {
-          return _BuildVocabList(widget.items[index]);
+          return _BuildVocabList(items[index]);
         },
         shrinkWrap: true,
         separatorBuilder: (context, index) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:arabic_korean_memo/data/data_manager.dart';
+import 'package:arabic_korean_memo/data/item_provider.dart';
 
 import 'package:arabic_korean_memo/pages/p_setting.dart';
 import 'package:arabic_korean_memo/pages/p_study.dart';
@@ -16,9 +17,8 @@ import 'package:arabic_korean_memo/pages/screens/pp_grammar.dart';
 import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await ItemDataManager().loadData();
   runApp(const MyApp());
 }
 
@@ -28,17 +28,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: '나만의 작은 아랍어',
-      home: const MainPages(),
-      routes: {
-        '/flashcards': (context) => const FlashCards(),
-        '/wordblink': (context) => const WordBlink(),
-        '/grammar': (context) => const Grammar(),
-        '/fourchoice': (context) => const FourChoice(),
-        '/testgenerator': (context) => const TestGenerator(),
-      },
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => ItemProvider()..loadData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: '나만의 작은 아랍어',
+        home: const MainPages(),
+        routes: {
+          '/flashcards': (context) => const FlashCards(),
+          '/wordblink': (context) => const WordBlink(),
+          '/grammar': (context) => const Grammar(),
+          '/fourchoice': (context) => const FourChoice(),
+          '/testgenerator': (context) => const TestGenerator(),
+        },
+      ),
     );
   }
 }
@@ -65,50 +68,54 @@ class _MainPagesState extends State<MainPages> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        // 타입
-        type: BottomNavigationBarType.fixed,
-        elevation: 10,
-        //현재 index 변수에 저장
-        currentIndex: _currentIndex,
-        //tap -> index 변경
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        //BottomNavi item list
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(CustomIcon.mpWords),
-            label: '단어장',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CustomIcon.mpStudy),
-            label: '학습',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CustomIcon.mpTest),
-            label: '테스트',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CustomIcon.mpSettings),
-            label: '설정',
-          ),
-        ],
-        // BottomNavi 스타일 지정
-        selectedItemColor: mainMint,
-        selectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 13,
+      bottomNavigationBar: _buildBottomNavigationBar(),
+    );
+  }
+
+  BottomNavigationBar _buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      // 타입
+      type: BottomNavigationBarType.fixed,
+      elevation: 10,
+      //현재 index 변수에 저장
+      currentIndex: _currentIndex,
+      //tap -> index 변경
+      onTap: (index) {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
+      //BottomNavi item list
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(CustomIcon.mpWords),
+          label: '단어장',
         ),
-        // unselectedItemColor: Colors.grey,
-        unselectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 13,
+        BottomNavigationBarItem(
+          icon: Icon(CustomIcon.mpStudy),
+          label: '학습',
         ),
-        showUnselectedLabels: true,
+        BottomNavigationBarItem(
+          icon: Icon(CustomIcon.mpTest),
+          label: '테스트',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(CustomIcon.mpSettings),
+          label: '설정',
+        ),
+      ],
+      // BottomNavi 스타일 지정
+      selectedItemColor: mainMint,
+      selectedLabelStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 13,
       ),
+      // unselectedItemColor: Colors.grey,
+      unselectedLabelStyle: const TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 13,
+      ),
+      showUnselectedLabels: true,
     );
   }
 }

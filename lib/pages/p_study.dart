@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'package:arabic_korean_memo/data/data_manager.dart';
+import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/data/item_class.dart';
 
 import 'package:arabic_korean_memo/themes/my_icons.dart';
@@ -17,25 +18,11 @@ class MainPageStudy extends StatefulWidget {
 }
 
 class _MainPageStudyState extends State<MainPageStudy> {
-  final ItemDataManager _itemDataManager = ItemDataManager();
   List<Item> _currentItemList = [];
 
-  @override
-  void initState() {
-    super.initState();
-    _loadData();
-  }
-
-  Future<void> _loadData() async {
-    await _itemDataManager.loadData();
+  void _updateCurrentItemList(List<Item> itemList) {
     setState(() {
-      _currentItemList = _itemDataManager.totalItemList;
-    }); // Refresh the UI after data is loaded
-  }
-
-  void _updateCurrentItemList(List<Item> newList) {
-    setState(() {
-      _currentItemList = newList;
+      _currentItemList = itemList;
     });
   }
 
@@ -63,66 +50,70 @@ class _MainPageStudyState extends State<MainPageStudy> {
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
-        child: Column(
-          children: [
-            // ********************************* 색전환 버튼들
-            CategoryButton(
-              totalItemCount: _itemDataManager.getTotalItemCount(),
-              memorizedItemCount: _itemDataManager.getMemorizedItemCount(),
-              notMemorizedItemCount:
-                  _itemDataManager.getNotMemorizedItemCount(),
-              onTapTotal: () {
-                _updateCurrentItemList(_itemDataManager.totalItemList);
-              },
-              onTapMemorized: () {
-                _updateCurrentItemList(_itemDataManager.memorizedItemList);
-              },
-              onTapNotMemorized: () {
-                _updateCurrentItemList(_itemDataManager.notMemorizedItemList);
-              },
-            ),
-            // 빈 공간 SPACING
-            const SizedBox(
-              height: 22,
-            ),
-            // 메뉴 버튼들
-            Table(
-              children: <TableRow>[
-                TableRow(
-                  children: <Widget>[
-                    MenuCard(
-                      menuIcon: const Icon(Icons.style_outlined),
-                      menuName: '플래시 카드',
-                      description: '메뉴 설명들 ~~~~~~~~~~~~~~~~',
-                      route: '/flashcards',
-                    ),
-                    MenuCard(
-                      menuIcon:
-                          const Icon(Icons.local_fire_department_outlined),
-                      menuName: '단어 멍',
-                      description: '단어를 보면서 멍을 때려요',
-                      route: '/wordblink',
-                    ),
-                  ],
+        child: Consumer<ItemProvider>(
+          builder: (context, provider, child) {
+            _currentItemList = provider.totalItems;
+
+            return Column(
+              children: [
+                // ********************************* 색전환 버튼들
+                CategoryButton(
+                  totalItemCount: provider.getTotalItemCount(),
+                  memorizedItemCount: provider.getMemorizedItemCount(),
+                  notMemorizedItemCount: provider.getNotMemorizedItemCount(),
+                  onTapTotal: () {
+                    _updateCurrentItemList(provider.totalItems);
+                  },
+                  onTapMemorized: () {
+                    _updateCurrentItemList(provider.memorizedItems);
+                  },
+                  onTapNotMemorized: () {
+                    _updateCurrentItemList(provider.notMemorizedItems);
+                  },
                 ),
-                TableRow(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: MenuCard(
-                        menuIcon: const Icon(Icons.mosque_outlined),
-                        // OR  icons.school,  account_balance
-                        menuName: '문법 요약',
-                        description: '헷갈리는 문법 사항을 빠르게 체크해요',
-                        route: '/grammar',
-                      ),
+                // 빈 공간 SPACING
+                const SizedBox(height: 22),
+                // 메뉴 버튼들
+                Table(
+                  children: <TableRow>[
+                    TableRow(
+                      children: <Widget>[
+                        MenuCard(
+                          menuIcon: const Icon(Icons.style_outlined),
+                          menuName: '플래시 카드',
+                          description:
+                              '가볍게 넘기면서 외워요. 스와이프 결과가 단어장에는 영향을 주지 않아요.',
+                          route: '/flashcards',
+                        ),
+                        MenuCard(
+                          menuIcon:
+                              const Icon(Icons.local_fire_department_outlined),
+                          menuName: '단어 멍',
+                          description: '단어를 보면서 멍을 때려요',
+                          route: '/wordblink',
+                        ),
+                      ],
                     ),
-                    const SizedBox.shrink(), // Empty cell
+                    TableRow(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: MenuCard(
+                            menuIcon: const Icon(Icons.mosque_outlined),
+                            // OR  icons.school,  account_balance
+                            menuName: '문법 요약',
+                            description: '헷갈리는 문법 사항을 빠르게 체크해요',
+                            route: '/grammar',
+                          ),
+                        ),
+                        const SizedBox.shrink(), // Empty cell
+                      ],
+                    ),
                   ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

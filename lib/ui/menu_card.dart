@@ -66,7 +66,7 @@ class _MenuCardState extends State<MenuCard> {
                 ],
               ),
               Container(
-                height: 70,
+                height: 100,
                 padding: const EdgeInsets.all(8),
                 child: Text(
                   widget.description,
