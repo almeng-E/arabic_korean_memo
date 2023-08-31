@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:arabic_korean_memo/data/item_class.dart';
 
-import 'package:arabic_korean_memo/themes/my_colors.dart';
 // =========================================================================
 
 class VocabList extends StatelessWidget {
@@ -48,13 +47,6 @@ class _BuildVocabList extends StatelessWidget {
         ),
       ),
       child: ExpansionTile(
-        backgroundColor: hermesOrange,
-        textColor: Colors.black,
-        iconColor: Colors.black,
-        collapsedBackgroundColor: hermesOrange,
-        collapsedTextColor: Colors.black,
-        collapsedIconColor: Colors.black,
-        tilePadding: const EdgeInsets.all(2),
         title: ListTile(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

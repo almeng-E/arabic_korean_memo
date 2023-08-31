@@ -8,8 +8,8 @@ import 'package:arabic_korean_memo/pages/p_study.dart';
 import 'package:arabic_korean_memo/pages/p_tests.dart';
 import 'package:arabic_korean_memo/pages/p_vocabs.dart';
 
-import 'package:arabic_korean_memo/themes/my_colors.dart';
 import 'package:arabic_korean_memo/themes/my_icons.dart';
+import 'package:arabic_korean_memo/themes/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,10 +24,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => ItemProvider()..loadData(),
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: '나만의 작은 아랍어',
-        home: MainPages(),
+        theme: AppTheme.lightTheme,
+        home: const MainPages(),
       ),
     );
   }
@@ -61,9 +62,6 @@ class _MainPagesState extends State<MainPages> {
 
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
-      // 타입
-      type: BottomNavigationBarType.fixed,
-      elevation: 10,
       //현재 index 변수에 저장
       currentIndex: _currentIndex,
       //tap -> index 변경
@@ -91,18 +89,6 @@ class _MainPagesState extends State<MainPages> {
           label: '설정',
         ),
       ],
-      // BottomNavi 스타일 지정
-      selectedItemColor: mainMint,
-      selectedLabelStyle: const TextStyle(
-        fontWeight: FontWeight.w700,
-        fontSize: 13,
-      ),
-      // unselectedItemColor: Colors.grey,
-      unselectedLabelStyle: const TextStyle(
-        fontWeight: FontWeight.w500,
-        fontSize: 13,
-      ),
-      showUnselectedLabels: true,
     );
   }
 }

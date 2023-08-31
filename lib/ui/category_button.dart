@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:arabic_korean_memo/themes/my_colors.dart';
-
 // =========================================================================
 class _Constants {
   static const double containerWidth = 60;
@@ -97,8 +95,8 @@ class ClickableContainer extends StatelessWidget {
           Container(
             width: _Constants.containerWidth,
             height: _Constants.containerHeight,
-            decoration: const BoxDecoration(
-              color: hermesOrange,
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
             ),
             child: Center(
               child: labelIcon,
@@ -108,7 +106,7 @@ class ClickableContainer extends StatelessWidget {
             width: _Constants.containerWidth,
             height: _Constants.containerWidth,
             decoration: BoxDecoration(
-              color: hermesOrange.withOpacity(0.9),
+              color: Theme.of(context).primaryColor.withOpacity(0.9),
             ),
             child: Center(
               child: Text(

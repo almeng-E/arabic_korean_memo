@@ -16,12 +16,9 @@ class _MainPageSettingsState extends State<MainPageSettings> {
         title: const Text(
           '설정',
           style: TextStyle(
-            color: Colors.black,
             fontSize: 24,
           ),
         ),
-        elevation: 0,
-        backgroundColor: Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),

@@ -3,8 +3,6 @@ import 'package:swipable_stack/swipable_stack.dart';
 
 import 'package:arabic_korean_memo/data/item_class.dart';
 
-import 'package:arabic_korean_memo/themes/my_colors.dart';
-
 // =========================================================================
 class FlashCards extends StatefulWidget {
   final List<Item> items;
@@ -150,7 +148,7 @@ class _FlashCardsState extends State<FlashCards> {
                             },
                             child: Container(
                               decoration: BoxDecoration(
-                                color: hermesOrange,
+                                color: Theme.of(context).primaryColor,
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.5),
@@ -187,9 +185,9 @@ class _FlashCardsState extends State<FlashCards> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Ink(
-                  decoration: const ShapeDecoration(
-                    shape: CircleBorder(),
-                    color: hermesOrange,
+                  decoration: ShapeDecoration(
+                    shape: const CircleBorder(),
+                    color: Theme.of(context).primaryColor,
                   ),
                   child: IconButton(
                     icon: const Icon(Icons.clear_outlined),
@@ -202,9 +200,9 @@ class _FlashCardsState extends State<FlashCards> {
                   ),
                 ),
                 Ink(
-                  decoration: const ShapeDecoration(
-                    shape: CircleBorder(),
-                    color: hermesOrange,
+                  decoration: ShapeDecoration(
+                    shape: const CircleBorder(),
+                    color: Theme.of(context).primaryColor,
                   ),
                   child: IconButton(
                     icon: const Icon(Icons.refresh_outlined),
@@ -217,9 +215,9 @@ class _FlashCardsState extends State<FlashCards> {
                   ),
                 ),
                 Ink(
-                  decoration: const ShapeDecoration(
-                    shape: CircleBorder(),
-                    color: hermesOrange,
+                  decoration: ShapeDecoration(
+                    shape: const CircleBorder(),
+                    color: Theme.of(context).primaryColor,
                   ),
                   child: IconButton(
                     icon: const Icon(Icons.circle_outlined),

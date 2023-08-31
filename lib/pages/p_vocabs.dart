@@ -35,28 +35,22 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
         title: const Text(
           '단어장',
           style: TextStyle(
-            color: Colors.black,
             fontSize: 24,
           ),
         ),
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.search_rounded),
-            color: Colors.black,
             tooltip: '검색',
             onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.shuffle_rounded),
-            color: Colors.black,
             tooltip: '셔플',
             onPressed: () {},
           ),
           IconButton(
             icon: const Icon(CustomIcon.sliders),
-            color: Colors.black,
             tooltip: '범위설정',
             onPressed: () {},
           ),

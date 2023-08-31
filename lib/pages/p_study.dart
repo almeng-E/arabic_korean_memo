@@ -39,16 +39,12 @@ class _MainPageStudyState extends State<MainPageStudy> {
         title: const Text(
           '학습',
           style: TextStyle(
-            color: Colors.black,
             fontSize: 24,
           ),
         ),
-        elevation: 0,
-        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: const Icon(CustomIcon.sliders),
-            color: Colors.black,
             tooltip: '범위설정',
             onPressed: () {},
           ),

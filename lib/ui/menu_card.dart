@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:arabic_korean_memo/themes/my_colors.dart';
-
 // =========================================================================
 class MenuCard extends StatefulWidget {
   final Icon menuIcon;
@@ -29,7 +27,7 @@ class _MenuCardState extends State<MenuCard> {
       shape: RoundedRectangleBorder(
         borderRadius: widget._baseBorderRadius,
       ),
-      color: hermesOrange,
+      color: Theme.of(context).primaryColor,
       child: InkWell(
         borderRadius: widget._baseBorderRadius,
         onTap: () {
