@@ -19,7 +19,6 @@ class FlashCards extends StatefulWidget {
 }
 
 class _FlashCardsState extends State<FlashCards> {
-  // List<Item> data = [];
   // Initially show Arabic meaning
   bool _showArabic = true;
 
@@ -40,12 +39,13 @@ class _FlashCardsState extends State<FlashCards> {
       ..dispose();
   }
 
-  // void _refreshCards() {
-  //   setState(() {
-  //     data = ItemDataManager().getShuffledItems();
-  //     _controller.currentIndex = 0;
-  //   });
-  // }
+  void _refreshCards() {
+    setState(() {
+      widget.items.shuffle();
+      _controller.currentIndex = 0;
+      _showArabic = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,11 +121,11 @@ class _FlashCardsState extends State<FlashCards> {
                         },
                         onSwipeCompleted: (index, direction) {
                           if (direction == SwipeDirection.left) {
-                            _showArabic = true;
+                            // _showArabic = true;
                             print(
                                 'Left! $index'); // Print 'Left' when swiped left
                           } else if (direction == SwipeDirection.right) {
-                            _showArabic = true;
+                            // _showArabic = true;
                             print(
                                 'Right! $index'); // Print 'Right' when swiped right
                           }
@@ -209,7 +209,9 @@ class _FlashCardsState extends State<FlashCards> {
                     iconSize: 40,
                     color: Colors.white,
                     tooltip: '다시하기 / 셔플',
-                    onPressed: () {},
+                    onPressed: () {
+                      _refreshCards();
+                    },
                   ),
                 ),
                 Ink(
