@@ -26,9 +26,8 @@ class _MainPageStudyState extends State<MainPageStudy> {
 
   void _updateCurrentItemList(List<Item> itemList) {
     Feedback.forTap(context);
-
     setState(() {
-      _currentItemList = itemList;
+      _currentItemList = List.from(itemList);
     });
   }
 
@@ -55,7 +54,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
         child: Consumer<ItemProvider>(
           builder: (context, provider, child) {
             if (_currentItemList.isEmpty) {
-              _currentItemList = provider.totalItems;
+              _currentItemList = List.from(provider.totalItems);
             }
             return Column(
               children: [

@@ -21,11 +21,16 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
   List<Item> _currentItemList = [];
 
   void _updateCurrentItemList(List<Item> itemList) {
+    // haptic 반응을 위함
     Feedback.forTap(context);
-
     setState(() {
       _currentItemList = itemList;
     });
+  }
+
+  void _shuffleCurrentItemList() {
+    _currentItemList = List.from(_currentItemList); // Create a copy
+    _currentItemList.shuffle(); // Shuffle the copy
   }
 
   @override
@@ -47,7 +52,11 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
           IconButton(
             icon: const Icon(Icons.shuffle_rounded),
             tooltip: '셔플',
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                _shuffleCurrentItemList();
+              });
+            },
           ),
           IconButton(
             icon: const Icon(CustomIcon.sliders),

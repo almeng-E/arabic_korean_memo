@@ -34,27 +34,23 @@ Future<List<Item>> parseCsvAndGenerateItems(String csvContent) async {
 class ItemProvider with ChangeNotifier {
   static const String _csvFilePath = 'assets/csv/DUMMY.csv';
 
-  List<Item> _originalItems = [];
   List<Item> _totalItems = [];
-
   List<Item> _memorizedItems = [];
   List<Item> _notMemorizedItems = [];
 
   bool _isLoading = false;
 
   Future<void> loadData() async {
-    if (!_isLoading && _originalItems.isEmpty) {
+    if (!_isLoading && _totalItems.isEmpty) {
       _isLoading = true;
 
       String csvContent = await rootBundle.loadString(_csvFilePath);
 
-      _originalItems = await parseCsvAndGenerateItems(csvContent);
-      _totalItems = List.from(_originalItems);
+      _totalItems = await parseCsvAndGenerateItems(csvContent);
 
-      _memorizedItems =
-          _originalItems.where((item) => item.isMemorized).toList();
+      _memorizedItems = _totalItems.where((item) => item.isMemorized).toList();
       _notMemorizedItems =
-          _originalItems.where((item) => !item.isMemorized).toList();
+          _totalItems.where((item) => !item.isMemorized).toList();
 
       _isLoading = false;
 
