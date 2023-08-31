@@ -5,7 +5,11 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     //----------------------------------- main THEME
     primaryColor: hermesOrange,
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: hermesOrange),
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: accentColor,
+      tertiary: secondaryBlue,
+    ),
+
     scaffoldBackgroundColor: Colors.white,
 
     //----------------------------------- appBar THEME
@@ -20,16 +24,16 @@ class AppTheme {
     ),
 
     //----------------------------------- bottomNavi THEME
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       elevation: 10,
-      selectedItemColor: Colors.black.withOpacity(0.75),
-      selectedLabelStyle: const TextStyle(
+      selectedItemColor: secondaryBlue,
+      selectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w700,
         fontSize: 12,
       ),
       unselectedItemColor: Colors.grey,
-      unselectedLabelStyle: const TextStyle(
+      unselectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 12,
       ),

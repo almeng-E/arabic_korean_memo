@@ -123,5 +123,3 @@ class ClickableContainer extends StatelessWidget {
     );
   }
 }
-
-//TODO 이후 data에 접근하는 법 배워야함. 버튼 클릭 시 해당 데이터만 접근하여 다시 렌더링하도록
