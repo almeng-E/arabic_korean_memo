@@ -70,9 +70,12 @@ class _FlashCardsState extends State<FlashCards> {
             height: 15,
             child: LinearProgressIndicator(
               value: _controller.currentIndex / widget.items.length,
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-              semanticsValue:
-                  '${((_controller.currentIndex / widget.items.length) * 100).toStringAsFixed(1)}%',
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Theme.of(context).colorScheme.secondary,
+              ),
+              backgroundColor: Theme.of(context).colorScheme.onBackground,
+              // semanticsValue:
+              //     '${((_controller.currentIndex / widget.items.length) * 100).toStringAsFixed(1)}%',
             ),
           ),
           Expanded(

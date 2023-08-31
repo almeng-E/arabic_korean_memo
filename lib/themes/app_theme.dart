@@ -8,6 +8,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: accentColor,
       tertiary: secondaryBlue,
+      onBackground: neutralWhte,
     ),
 
     scaffoldBackgroundColor: Colors.white,

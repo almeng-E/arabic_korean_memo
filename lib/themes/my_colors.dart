@@ -13,3 +13,5 @@ const Color mainGreen = Color(0xff3f6c51);
 const Color hermesOrange = Color(0xfff37021);
 const Color secondaryBlue = Color(0xff214b6d);
 const Color accentColor = Color(0xffff5733);
+const Color neutralWhte = Color(0xffe6e6e6);
+const Color neutralGrey = Color(0xff8c8c8c);
