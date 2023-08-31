@@ -36,7 +36,7 @@ class AppTheme {
       showUnselectedLabels: true,
     ),
 
-    //----------------------------------- expansionTileTheme
+    //----------------------------------- expansionTile THEME
     expansionTileTheme: const ExpansionTileThemeData(
       backgroundColor: hermesOrange,
       textColor: Colors.black,

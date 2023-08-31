@@ -32,9 +32,17 @@ class VocabList extends StatelessWidget {
   }
 }
 
-class _BuildVocabList extends StatelessWidget {
+class _BuildVocabList extends StatefulWidget {
   final Item item;
+
   const _BuildVocabList(this.item);
+
+  @override
+  State<_BuildVocabList> createState() => _BuildVocabListState();
+}
+
+class _BuildVocabListState extends State<_BuildVocabList> {
+  bool expanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +55,36 @@ class _BuildVocabList extends StatelessWidget {
         ),
       ),
       child: ExpansionTile(
+        onExpansionChanged: (value) {
+          if (value) {
+            setState(() {
+              expanded = true;
+            });
+          } else {
+            setState(() {
+              expanded = false;
+            });
+          }
+        },
         title: ListTile(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                item.arabicWord,
+                widget.item.arabicWord,
                 style: const TextStyle(fontSize: 20),
               ),
-              Text(item.koreanMeaning),
+              Flexible(
+                child: expanded
+                    ? Text(
+                        widget.item.koreanMeaning,
+                      )
+                    : Text(
+                        widget.item.koreanMeaning,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
+              ),
             ],
           ),
         ),
@@ -72,9 +101,9 @@ class _BuildVocabList extends StatelessWidget {
               },
               textBaseline: TextBaseline.ideographic,
               children: <TableRow>[
-                _buildTableRow('품사', item.grammaticalType),
-                _buildTableRow('어근', item.root),
-                _buildTableRow('추가정보', '${item.info} blah blah blah'),
+                _buildTableRow('품사', widget.item.grammaticalType),
+                _buildTableRow('어근', widget.item.root),
+                _buildTableRow('추가정보', '${widget.item.info} blah blah blah'),
               ],
             ),
           ),

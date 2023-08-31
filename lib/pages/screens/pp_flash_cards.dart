@@ -163,6 +163,9 @@ class _FlashCardsState extends State<FlashCards> {
                               child: Center(
                                 child: Text(
                                   cardContent,
+                                  textAlign: TextAlign.center,
+                                  overflow: TextOverflow.clip,
+                                  maxLines: 5,
                                   style: const TextStyle(
                                     fontSize: 40,
                                     fontWeight: FontWeight.bold,
