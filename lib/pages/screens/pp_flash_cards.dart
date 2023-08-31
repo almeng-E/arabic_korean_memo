@@ -121,11 +121,11 @@ class _FlashCardsState extends State<FlashCards> {
                         },
                         onSwipeCompleted: (index, direction) {
                           if (direction == SwipeDirection.left) {
-                            // _showArabic = true;
+                            _showArabic = true;
                             print(
                                 'Left! $index'); // Print 'Left' when swiped left
                           } else if (direction == SwipeDirection.right) {
-                            // _showArabic = true;
+                            _showArabic = true;
                             print(
                                 'Right! $index'); // Print 'Right' when swiped right
                           }
@@ -137,7 +137,11 @@ class _FlashCardsState extends State<FlashCards> {
                             return const SizedBox();
                           }
                           final item = widget.items[index];
-
+                          final cardContent = swipeProperty.stackIndex == 0
+                              ? (_showArabic
+                                  ? item.arabicWord
+                                  : item.koreanMeaning)
+                              : item.arabicWord;
                           return GestureDetector(
                             onTap: () {
                               setState(() {
@@ -160,11 +164,9 @@ class _FlashCardsState extends State<FlashCards> {
                               width: 300,
                               child: Center(
                                 child: Text(
-                                  _showArabic
-                                      ? item.arabicWord
-                                      : item.koreanMeaning,
+                                  cardContent,
                                   style: const TextStyle(
-                                    fontSize: 32,
+                                    fontSize: 40,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
