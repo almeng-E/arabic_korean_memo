@@ -8,9 +8,9 @@ class VocabList extends StatelessWidget {
   final List<Item> items;
 
   const VocabList({
-    super.key,
+    Key? key,
     required this.items,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _BuildVocabList extends StatefulWidget {
 }
 
 class _BuildVocabListState extends State<_BuildVocabList> {
-  bool expanded = false;
+  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +56,9 @@ class _BuildVocabListState extends State<_BuildVocabList> {
       ),
       child: ExpansionTile(
         onExpansionChanged: (value) {
-          if (value) {
-            setState(() {
-              expanded = true;
-            });
-          } else {
-            setState(() {
-              expanded = false;
-            });
-          }
+          setState(() {
+            isExpanded = value;
+          });
         },
         title: ListTile(
           title: Row(
@@ -75,7 +69,7 @@ class _BuildVocabListState extends State<_BuildVocabList> {
                 style: const TextStyle(fontSize: 20),
               ),
               Flexible(
-                child: expanded
+                child: isExpanded
                     ? Text(
                         widget.item.koreanMeaning,
                       )
