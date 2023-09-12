@@ -52,7 +52,7 @@ class _FlashCardsState extends State<FlashCards> {
         title: const Text(
           '플래시 카드',
           style: TextStyle(
-            color: Colors.black,
+            fontSize: 18,
           ),
         ),
         centerTitle: true,

@@ -11,7 +11,7 @@ class FourChoice extends StatelessWidget {
         title: const Text(
           '사지선다',
           style: TextStyle(
-            color: Colors.black,
+            fontSize: 18,
           ),
         ),
         centerTitle: true,

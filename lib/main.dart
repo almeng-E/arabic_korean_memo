@@ -1,3 +1,4 @@
+import 'package:arabic_korean_memo/pages/p_grammar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,9 +7,7 @@ import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/pages/p_setting.dart';
 import 'package:arabic_korean_memo/pages/p_study.dart';
 import 'package:arabic_korean_memo/pages/p_tests.dart';
-import 'package:arabic_korean_memo/pages/p_vocabs.dart';
 
-import 'package:arabic_korean_memo/themes/my_icons.dart';
 import 'package:arabic_korean_memo/themes/app_theme.dart';
 
 void main() {
@@ -43,10 +42,10 @@ class MainPages extends StatefulWidget {
 }
 
 class _MainPagesState extends State<MainPages> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
 
   final List<Widget> _pages = [
-    const MainPageVocabs(),
+    const MainPageGrammar(),
     const MainPageStudy(),
     const MainPageTests(),
     const MainPageSettings(),
@@ -73,19 +72,21 @@ class _MainPagesState extends State<MainPages> {
       //BottomNavi item list
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(CustomIcon.mpWords),
-          label: '단어장',
+          icon: Icon(
+            Icons.mosque_outlined,
+          ),
+          label: '문법 요약',
         ),
         BottomNavigationBarItem(
-          icon: Icon(CustomIcon.mpStudy),
+          icon: Icon(Icons.school_outlined),
           label: '학습',
         ),
         BottomNavigationBarItem(
-          icon: Icon(CustomIcon.mpTest),
+          icon: Icon(Icons.psychology_alt_outlined),
           label: '테스트',
         ),
         BottomNavigationBarItem(
-          icon: Icon(CustomIcon.mpSettings),
+          icon: Icon(Icons.settings_outlined),
           label: '설정',
         ),
       ],

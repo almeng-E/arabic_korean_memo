@@ -11,7 +11,7 @@ class TestGenerator extends StatelessWidget {
         title: const Text(
           '문제지 생성기',
           style: TextStyle(
-            color: Colors.black,
+            fontSize: 18,
           ),
         ),
         centerTitle: true,

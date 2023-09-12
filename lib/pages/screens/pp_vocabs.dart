@@ -4,20 +4,18 @@ import 'package:provider/provider.dart';
 import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/data/item_class.dart';
 
-import 'package:arabic_korean_memo/themes/my_icons.dart';
-
 import 'package:arabic_korean_memo/ui/category_button.dart';
 import 'package:arabic_korean_memo/ui/vocab_list.dart';
 
 // =========================================================================
-class MainPageVocabs extends StatefulWidget {
-  const MainPageVocabs({super.key});
+class VocabPage extends StatefulWidget {
+  const VocabPage({super.key});
 
   @override
-  State<MainPageVocabs> createState() => _MainPageVocabsState();
+  State<VocabPage> createState() => _VocabPageState();
 }
 
-class _MainPageVocabsState extends State<MainPageVocabs> {
+class _VocabPageState extends State<VocabPage> {
   List<Item> _currentItemList = [];
 
   void _updateCurrentItemList(List<Item> itemList) {
@@ -40,9 +38,16 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
         title: const Text(
           '단어장',
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 18,
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: const Icon(Icons.search_rounded),
@@ -58,11 +63,11 @@ class _MainPageVocabsState extends State<MainPageVocabs> {
               });
             },
           ),
-          IconButton(
-            icon: const Icon(CustomIcon.sliders),
-            tooltip: '범위설정',
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.tune_rounded),
+          //   tooltip: '범위설정',
+          //   onPressed: () {},
+          // ),
         ],
       ),
       body: Padding(

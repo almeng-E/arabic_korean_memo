@@ -7,8 +7,6 @@ import 'package:arabic_korean_memo/data/item_class.dart';
 import 'package:arabic_korean_memo/pages/screens/pp_four_choice.dart';
 import 'package:arabic_korean_memo/pages/screens/pp_test_generator.dart';
 
-import 'package:arabic_korean_memo/themes/my_icons.dart';
-
 import 'package:arabic_korean_memo/ui/category_button.dart';
 import 'package:arabic_korean_memo/ui/menu_card.dart';
 
@@ -43,7 +41,7 @@ class _MainPageTestsState extends State<MainPageTests> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(CustomIcon.sliders),
+            icon: const Icon(Icons.tune_rounded),
             tooltip: '범위설정',
             onPressed: () {},
           ),
@@ -85,7 +83,7 @@ class _MainPageTestsState extends State<MainPageTests> {
                       route: const FourChoice(),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 22,
                     ),
                     MenuCard(
                       menuIcon: const Icon(Icons.picture_as_pdf_outlined),

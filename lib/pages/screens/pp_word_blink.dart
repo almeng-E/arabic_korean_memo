@@ -11,7 +11,7 @@ class WordBlink extends StatelessWidget {
         title: const Text(
           '단어 멍',
           style: TextStyle(
-            color: Colors.black,
+            fontSize: 18,
           ),
         ),
         centerTitle: true,

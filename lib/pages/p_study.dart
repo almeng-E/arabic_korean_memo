@@ -4,14 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/data/item_class.dart';
 
-import 'package:arabic_korean_memo/pages/screens/pp_flash_cards.dart';
-import 'package:arabic_korean_memo/pages/screens/pp_grammar.dart';
-import 'package:arabic_korean_memo/pages/screens/pp_word_blink.dart';
-
-import 'package:arabic_korean_memo/themes/my_icons.dart';
-
 import 'package:arabic_korean_memo/ui/category_button.dart';
 import 'package:arabic_korean_memo/ui/menu_card.dart';
+
+import 'screens/pp_vocabs.dart';
+import 'screens/pp_flash_cards.dart';
+import 'screens/pp_word_blink.dart';
 
 // =========================================================================
 class MainPageStudy extends StatefulWidget {
@@ -43,7 +41,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(CustomIcon.sliders),
+            icon: const Icon(Icons.tune_rounded),
             tooltip: '범위설정',
             onPressed: () {},
           ),
@@ -76,43 +74,50 @@ class _MainPageStudyState extends State<MainPageStudy> {
                 // 빈 공간 SPACING
                 const SizedBox(height: 22),
                 // 메뉴 버튼들
-                Table(
-                  children: <TableRow>[
-                    TableRow(
+
+                Column(
+                  children: <Widget>[
+                    Row(
                       children: <Widget>[
-                        MenuCard(
-                          menuIcon: const Icon(Icons.style_outlined),
-                          menuName: '플래시 카드',
-                          description:
-                              '가볍게 넘기면서 외워요. 스와이프 결과가 단어장에는 영향을 주지 않아요.',
-                          route: FlashCards(items: _currentItemList),
-                        ),
-                        MenuCard(
-                          menuIcon:
-                              const Icon(Icons.local_fire_department_outlined),
-                          menuName: '단어 멍',
-                          description: '단어를 보면서 멍을 때려요',
-                          route: const WordBlink(),
-                        ),
+                        Expanded(
+                          child: MenuCard(
+                            menuIcon:
+                                const Icon(Icons.chrome_reader_mode_outlined),
+                            menuName: '단어장',
+                            description: '단어 학습',
+                            route: const VocabPage(),
+                          ),
+                        )
                       ],
                     ),
-                    TableRow(
+                    const SizedBox(
+                      height: 22,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
+                        Expanded(
                           child: MenuCard(
-                            menuIcon: const Icon(Icons.mosque_outlined),
-                            // OR  icons.school,  account_balance
-                            menuName: '문법 요약',
-                            description: '헷갈리는 문법 사항을 빠르게 체크해요',
-                            route: const Grammar(),
+                            menuIcon: const Icon(Icons.style_outlined),
+                            menuName: '플래시 카드',
+                            description:
+                                '가볍게 넘기면서 외워요. 스와이프 결과가 단어장에는 영향을 주지 않아요.',
+                            route: FlashCards(items: _currentItemList),
                           ),
                         ),
-                        const SizedBox.shrink(), // Empty cell
+                        Expanded(
+                          child: MenuCard(
+                            menuIcon: const Icon(
+                                Icons.local_fire_department_outlined),
+                            menuName: '단어 멍',
+                            description: '단어를 보면서 멍을 때려요',
+                            route: const WordBlink(),
+                          ),
+                        )
                       ],
-                    ),
+                    )
                   ],
-                ),
+                )
               ],
             );
           },
