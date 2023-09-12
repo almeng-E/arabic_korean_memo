@@ -58,11 +58,6 @@ class ItemProvider with ChangeNotifier {
     }
   }
 
-  List<Item> getShuffledItems() {
-    List<Item> shuffledItems = List.from(_totalItems)..shuffle();
-    return shuffledItems;
-  }
-
   List<Item> get totalItems => _totalItems;
   List<Item> get memorizedItems => _memorizedItems;
   List<Item> get notMemorizedItems => _notMemorizedItems;
@@ -70,4 +65,9 @@ class ItemProvider with ChangeNotifier {
   int getTotalItemCount() => _totalItems.length;
   int getMemorizedItemCount() => _memorizedItems.length;
   int getNotMemorizedItemCount() => _notMemorizedItems.length;
+
+  List<Item> getShuffledItems() {
+    List<Item> shuffledItems = List.from(_totalItems)..shuffle();
+    return shuffledItems;
+  }
 }

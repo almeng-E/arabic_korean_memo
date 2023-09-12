@@ -4,7 +4,7 @@ import 'package:arabic_korean_memo/themes/my_colors.dart';
 class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     //----------------------------------- main THEME
-    primaryColor: hermesOrange,
+    primaryColor: mainMint,
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: accentColor,
       tertiary: secondaryBlue,
@@ -43,10 +43,10 @@ class AppTheme {
 
     //----------------------------------- expansionTile THEME
     expansionTileTheme: const ExpansionTileThemeData(
-      backgroundColor: hermesOrange,
+      backgroundColor: mainMint,
       textColor: Colors.black,
       iconColor: Colors.black,
-      collapsedBackgroundColor: hermesOrange,
+      collapsedBackgroundColor: mainMint,
       collapsedTextColor: Colors.black,
       collapsedIconColor: Colors.black,
       tilePadding: EdgeInsets.all(2),
