@@ -46,62 +46,72 @@ class _BuildVocabListState extends State<_BuildVocabList> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 1),
-      clipBehavior: Clip.antiAlias,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: ExpansionTile(
-        onExpansionChanged: (value) {
-          setState(() {
-            isExpanded = value;
-          });
-        },
-        title: ListTile(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                widget.item.arabicWord,
-                style: const TextStyle(fontSize: 20),
-              ),
-              Flexible(
-                child: isExpanded
-                    ? Text(
-                        widget.item.koreanMeaning,
-                      )
-                    : Text(
-                        widget.item.koreanMeaning,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-              ),
-            ],
+    return GestureDetector(
+      onHorizontalDragEnd: (details) {
+        if (details.primaryVelocity! > 0) {
+          // swipe right
+          print('swipe right');
+        } else if (details.primaryVelocity! < 0) {
+          //swipe left
+        }
+      },
+      child: Card(
+        margin: const EdgeInsets.only(bottom: 1),
+        clipBehavior: Clip.antiAlias,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
           ),
         ),
-        children: [
-          Container(
-            color: Colors.white.withOpacity(0.1),
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Table(
-              columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(100),
-                1: FixedColumnWidth(1),
-                2: FlexColumnWidth(),
-              },
-              textBaseline: TextBaseline.ideographic,
-              children: <TableRow>[
-                _buildTableRow('품사', widget.item.grammaticalType),
-                _buildTableRow('어근', widget.item.root),
-                _buildTableRow('추가정보', '${widget.item.info} blah blah blah'),
+        child: ExpansionTile(
+          onExpansionChanged: (value) {
+            setState(() {
+              isExpanded = value;
+            });
+          },
+          title: ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  widget.item.arabicWord,
+                  style: const TextStyle(fontSize: 20),
+                ),
+                Flexible(
+                  child: isExpanded
+                      ? Text(
+                          widget.item.koreanMeaning,
+                        )
+                      : Text(
+                          widget.item.koreanMeaning,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                ),
               ],
             ),
           ),
-        ],
+          children: [
+            Container(
+              color: Colors.white.withOpacity(0.1),
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Table(
+                columnWidths: const <int, TableColumnWidth>{
+                  0: FixedColumnWidth(100),
+                  1: FixedColumnWidth(1),
+                  2: FlexColumnWidth(),
+                },
+                textBaseline: TextBaseline.ideographic,
+                children: <TableRow>[
+                  _buildTableRow('품사', widget.item.grammaticalType),
+                  _buildTableRow('어근', widget.item.root),
+                  _buildTableRow('추가정보', '${widget.item.info} blah blah blah'),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
