@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:arabic_korean_memo/data/item_class.dart';
+import 'package:arabic_korean_memo/data/item_provider.dart';
 
 // =========================================================================
 class FourChoice extends StatelessWidget {
-  const FourChoice({super.key});
+  final String state;
+  const FourChoice({
+    super.key,
+    required this.state,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +30,21 @@ class FourChoice extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: const Center(
-        child: Text('사지선다 페이지'),
+      body: Consumer<ItemProvider>(
+        builder: (context, provider, child) {
+          // Access data from provider based on the state
+          List<Item> items;
+          if (state == 'memorized') {
+            items = provider.memorizedItems;
+          } else if (state == 'notMemorized') {
+            items = provider.notMemorizedItems;
+          } else {
+            items = provider.totalItems;
+          }
+          return const Center(
+            child: Text('사지선다 페이지'),
+          );
+        },
       ),
     );
   }

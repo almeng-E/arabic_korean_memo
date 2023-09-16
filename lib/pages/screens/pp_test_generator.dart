@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:arabic_korean_memo/data/item_class.dart';
+import 'package:arabic_korean_memo/data/item_provider.dart';
 
 // =========================================================================
 class TestGenerator extends StatelessWidget {
-  const TestGenerator({super.key});
+  final String state;
+
+  const TestGenerator({
+    super.key,
+    required this.state,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +31,21 @@ class TestGenerator extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: const Center(
-        child: Text('문제지 생성기 페이지'),
+      body: Consumer<ItemProvider>(
+        builder: (context, provider, child) {
+          // Access data from provider based on the state
+          List<Item> items;
+          if (state == 'memorized') {
+            items = provider.memorizedItems;
+          } else if (state == 'notMemorized') {
+            items = provider.notMemorizedItems;
+          } else {
+            items = provider.totalItems;
+          }
+          return const Center(
+            child: Text('테스트생성기 페이지'),
+          );
+        },
       ),
     );
   }

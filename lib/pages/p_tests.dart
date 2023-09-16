@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:arabic_korean_memo/data/item_provider.dart';
-import 'package:arabic_korean_memo/data/item_class.dart';
 
 import 'package:arabic_korean_memo/pages/screens/pp_four_choice.dart';
 import 'package:arabic_korean_memo/pages/screens/pp_test_generator.dart';
@@ -19,15 +18,7 @@ class MainPageTests extends StatefulWidget {
 }
 
 class _MainPageTestsState extends State<MainPageTests> {
-  List<Item> _currentItemList = [];
-
-  void _updateCurrentItemList(List<Item> itemList) {
-    Feedback.forTap(context);
-
-    setState(() {
-      _currentItemList = itemList;
-    });
-  }
+  String _currentState = 'total';
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +42,6 @@ class _MainPageTestsState extends State<MainPageTests> {
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Consumer<ItemProvider>(
           builder: (context, provider, child) {
-            if (_currentItemList.isEmpty) {
-              _currentItemList = provider.totalItems;
-            }
             return Column(
               children: [
                 // ********************************* 색전환 버튼들
@@ -62,13 +50,19 @@ class _MainPageTestsState extends State<MainPageTests> {
                   memorizedItemCount: provider.getMemorizedItemCount(),
                   notMemorizedItemCount: provider.getNotMemorizedItemCount(),
                   onTapTotal: () {
-                    _updateCurrentItemList(provider.totalItems);
+                    setState(() {
+                      _currentState = 'total';
+                    });
                   },
                   onTapMemorized: () {
-                    _updateCurrentItemList(provider.memorizedItems);
+                    setState(() {
+                      _currentState = 'memorized';
+                    });
                   },
                   onTapNotMemorized: () {
-                    _updateCurrentItemList(provider.notMemorizedItems);
+                    setState(() {
+                      _currentState = 'notMemorized';
+                    });
                   },
                 ),
                 // 빈 공간 SPACING
@@ -77,10 +71,9 @@ class _MainPageTestsState extends State<MainPageTests> {
                   children: <Widget>[
                     MenuCard(
                       menuIcon: const Icon(Icons.widgets_outlined),
-                      // OR  Icons.dashboard_outlined
                       menuName: '사지 선다 테스트',
                       description: '설명 ~~~~~~~~~~',
-                      route: const FourChoice(),
+                      route: FourChoice(state: _currentState),
                     ),
                     const SizedBox(
                       height: 22,
@@ -89,7 +82,7 @@ class _MainPageTestsState extends State<MainPageTests> {
                       menuIcon: const Icon(Icons.picture_as_pdf_outlined),
                       menuName: '문제지 생성기',
                       description: '설명~~~~~~~~~@@@@@@@@@@@@@@@@@@@@@@@@@@@',
-                      route: const TestGenerator(),
+                      route: TestGenerator(state: _currentState),
                     ),
                   ],
                 )
