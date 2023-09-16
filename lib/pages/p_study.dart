@@ -58,9 +58,9 @@ class _MainPageStudyState extends State<MainPageStudy> {
               children: [
                 // ********************************* 색전환 버튼들
                 CategoryButton(
-                  // totalItemCount: provider.getTotalItemCount(),
-                  // memorizedItemCount: provider.getMemorizedItemCount(),
-                  // notMemorizedItemCount: provider.getNotMemorizedItemCount(),
+                  totalItemCount: provider.getTotalItemCount(),
+                  memorizedItemCount: provider.getMemorizedItemCount(),
+                  notMemorizedItemCount: provider.getNotMemorizedItemCount(),
                   onTapTotal: () {
                     _updateCurrentItemList(provider.totalItems);
                   },

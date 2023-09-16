@@ -46,9 +46,9 @@ class _MainPageTestsState extends State<MainPageTests> {
               children: [
                 // ********************************* 색전환 버튼들
                 CategoryButton(
-                  // totalItemCount: provider.getTotalItemCount(),
-                  // memorizedItemCount: provider.getMemorizedItemCount(),
-                  // notMemorizedItemCount: provider.getNotMemorizedItemCount(),
+                  totalItemCount: provider.getTotalItemCount(),
+                  memorizedItemCount: provider.getMemorizedItemCount(),
+                  notMemorizedItemCount: provider.getNotMemorizedItemCount(),
                   onTapTotal: () {
                     setState(() {
                       _currentState = 'total';

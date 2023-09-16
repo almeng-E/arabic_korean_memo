@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
-import 'package:arabic_korean_memo/data/item_provider.dart';
-
 // =========================================================================
 class _Constants {
   static const double containerWidth = 60;
@@ -13,18 +9,18 @@ class _Constants {
 }
 
 class CategoryButton extends StatelessWidget {
-  // final int totalItemCount;
-  // final int memorizedItemCount;
-  // final int notMemorizedItemCount;
+  final int totalItemCount;
+  final int memorizedItemCount;
+  final int notMemorizedItemCount;
   final VoidCallback onTapTotal;
   final VoidCallback onTapMemorized;
   final VoidCallback onTapNotMemorized;
 
   const CategoryButton({
     super.key,
-    // required this.totalItemCount,
-    // required this.memorizedItemCount,
-    // required this.notMemorizedItemCount,
+    required this.totalItemCount,
+    required this.memorizedItemCount,
+    required this.notMemorizedItemCount,
     required this.onTapTotal,
     required this.onTapMemorized,
     required this.onTapNotMemorized,
@@ -32,56 +28,48 @@ class CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ItemProvider>(
-      builder: (context, provider, child) {
-        final totalItemCount = provider.getTotalItemCount();
-        final memorizedItemCount = provider.getMemorizedItemCount();
-        final notMemorizedItemCount = provider.getNotMemorizedItemCount();
-
-        return SizedBox(
-          height: _Constants.containerHeight + _Constants.containerWidth,
-          width: _Constants.containerWidth * 3,
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(20),
+    return SizedBox(
+      height: _Constants.containerHeight + _Constants.containerWidth,
+      width: _Constants.containerWidth * 3,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ClickableContainer(
+              label: '$totalItemCount',
+              labelIcon: const Text(
+                '전체',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: _Constants.labelFontSize,
+                ),
+              ),
+              onTap: onTapTotal,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                ClickableContainer(
-                  label: '$totalItemCount',
-                  labelIcon: const Text(
-                    '전체',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: _Constants.labelFontSize,
-                    ),
-                  ),
-                  onTap: onTapTotal,
-                ),
-                ClickableContainer(
-                  label: '$memorizedItemCount',
-                  labelIcon: const Icon(
-                    Icons.circle_outlined,
-                    color: Colors.white,
-                    size: _Constants.iconSize,
-                  ),
-                  onTap: onTapMemorized,
-                ),
-                ClickableContainer(
-                  label: '$notMemorizedItemCount',
-                  labelIcon: const Icon(
-                    Icons.clear_outlined,
-                    color: Colors.white,
-                    size: _Constants.iconSize,
-                  ),
-                  onTap: onTapNotMemorized,
-                ),
-              ],
+            ClickableContainer(
+              label: '$memorizedItemCount',
+              labelIcon: const Icon(
+                Icons.circle_outlined,
+                color: Colors.white,
+                size: _Constants.iconSize,
+              ),
+              onTap: onTapMemorized,
             ),
-          ),
-        );
-      },
+            ClickableContainer(
+              label: '$notMemorizedItemCount',
+              labelIcon: const Icon(
+                Icons.clear_outlined,
+                color: Colors.white,
+                size: _Constants.iconSize,
+              ),
+              onTap: onTapNotMemorized,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
