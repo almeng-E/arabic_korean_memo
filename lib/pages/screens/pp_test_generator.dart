@@ -5,13 +5,35 @@ import 'package:arabic_korean_memo/data/item_class.dart';
 import 'package:arabic_korean_memo/data/item_provider.dart';
 
 // =========================================================================
-class TestGenerator extends StatelessWidget {
+class TestGenerator extends StatefulWidget {
   final String state;
 
   const TestGenerator({
     super.key,
     required this.state,
   });
+
+  @override
+  State<TestGenerator> createState() => _TestGeneratorState();
+}
+
+class _TestGeneratorState extends State<TestGenerator> {
+  late List<Item> _items;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Initialize _items based on the selected state
+    if (widget.state == 'memorized') {
+      _items = List.from(Provider.of<ItemProvider>(context).memorizedItems);
+    } else if (widget.state == 'notMemorized') {
+      _items = List.from(Provider.of<ItemProvider>(context).notMemorizedItems);
+    } else {
+      _items = List.from(Provider.of<ItemProvider>(context).totalItems);
+    }
+    _items.shuffle();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +55,6 @@ class TestGenerator extends StatelessWidget {
       ),
       body: Consumer<ItemProvider>(
         builder: (context, provider, child) {
-          // Access data from provider based on the state
-          List<Item> items;
-          if (state == 'memorized') {
-            items = provider.memorizedItems;
-          } else if (state == 'notMemorized') {
-            items = provider.notMemorizedItems;
-          } else {
-            items = provider.totalItems;
-          }
           return const Center(
             child: Text('테스트생성기 페이지'),
           );

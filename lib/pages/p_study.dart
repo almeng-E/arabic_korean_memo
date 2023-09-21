@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:arabic_korean_memo/data/item_provider.dart';
-import 'package:arabic_korean_memo/data/item_class.dart';
 
 import 'package:arabic_korean_memo/ui/category_button.dart';
 import 'package:arabic_korean_memo/ui/menu_card.dart';
@@ -20,14 +19,7 @@ class MainPageStudy extends StatefulWidget {
 }
 
 class _MainPageStudyState extends State<MainPageStudy> {
-  List<Item> _currentItemList = [];
-
-  void _updateCurrentItemList(List<Item> itemList) {
-    Feedback.forTap(context);
-    setState(() {
-      _currentItemList = List.from(itemList);
-    });
-  }
+  String _currentState = 'total';
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +43,6 @@ class _MainPageStudyState extends State<MainPageStudy> {
         padding: const EdgeInsets.fromLTRB(14, 14, 14, 0),
         child: Consumer<ItemProvider>(
           builder: (context, provider, child) {
-            if (_currentItemList.isEmpty) {
-              _currentItemList = List.from(provider.totalItems);
-            }
             return Column(
               children: [
                 // ********************************* 색전환 버튼들
@@ -62,13 +51,19 @@ class _MainPageStudyState extends State<MainPageStudy> {
                   memorizedItemCount: provider.getMemorizedItemCount(),
                   notMemorizedItemCount: provider.getNotMemorizedItemCount(),
                   onTapTotal: () {
-                    _updateCurrentItemList(provider.totalItems);
+                    setState(() {
+                      _currentState = 'total';
+                    });
                   },
                   onTapMemorized: () {
-                    _updateCurrentItemList(provider.memorizedItems);
+                    setState(() {
+                      _currentState = 'memorized';
+                    });
                   },
                   onTapNotMemorized: () {
-                    _updateCurrentItemList(provider.notMemorizedItems);
+                    setState(() {
+                      _currentState = 'notMemorized';
+                    });
                   },
                 ),
                 // 빈 공간 SPACING
@@ -102,7 +97,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
                             menuName: '플래시 카드',
                             description:
                                 '가볍게 넘기면서 외워요. 스와이프 결과가 단어장에는 영향을 주지 않아요.',
-                            route: FlashCards(items: _currentItemList),
+                            route: FlashCards(state: _currentState),
                           ),
                         ),
                         Expanded(
@@ -111,7 +106,7 @@ class _MainPageStudyState extends State<MainPageStudy> {
                                 Icons.local_fire_department_outlined),
                             menuName: '단어 멍',
                             description: '단어를 보면서 멍을 때려요',
-                            route: const WordBlink(),
+                            route: WordBlink(state: _currentState),
                           ),
                         )
                       ],

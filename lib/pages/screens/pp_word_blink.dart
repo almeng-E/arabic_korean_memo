@@ -1,8 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:arabic_korean_memo/data/item_class.dart';
+import 'package:arabic_korean_memo/data/item_provider.dart';
 
 // =========================================================================
-class WordBlink extends StatelessWidget {
-  const WordBlink({super.key});
+class WordBlink extends StatefulWidget {
+  final String state;
+
+  const WordBlink({
+    super.key,
+    required this.state,
+  });
+
+  @override
+  State<WordBlink> createState() => _WordBlinkState();
+}
+
+class _WordBlinkState extends State<WordBlink> {
+  late List<Item> _items;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Initialize _items based on the selected state
+    if (widget.state == 'memorized') {
+      _items = List.from(Provider.of<ItemProvider>(context).memorizedItems);
+    } else if (widget.state == 'notMemorized') {
+      _items = List.from(Provider.of<ItemProvider>(context).notMemorizedItems);
+    } else {
+      _items = List.from(Provider.of<ItemProvider>(context).totalItems);
+    }
+    _items.shuffle();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,72 +53,9 @@ class WordBlink extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      body: const Center(
-        child: BlinkingWordContainer(word: "Hello, Blink!"),
+      body: Center(
+        child: Text('${widget.state} and ${_items.length}'),
       ),
     );
   }
 }
-
-class BlinkingWordContainer extends StatefulWidget {
-  final String word;
-
-  const BlinkingWordContainer({super.key, required this.word});
-
-  @override
-  _BlinkingWordContainerState createState() => _BlinkingWordContainerState();
-}
-
-class _BlinkingWordContainerState extends State<BlinkingWordContainer> {
-  bool _isVisible = true;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Start the blinking animation when the widget is initialized.
-    _startBlinking();
-  }
-
-  void _startBlinking() {
-    // Toggle the visibility every second.
-    Future.delayed(const Duration(seconds: 1), () {
-      if (mounted) {
-        setState(() {
-          _isVisible = !_isVisible;
-        });
-        _startBlinking(); // Repeat the process.
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: ColorTween(begin: Colors.transparent, end: Colors.transparent)
-          .animate(const AlwaysStoppedAnimation(1)),
-      builder: (context, child) {
-        return Visibility(
-          visible: _isVisible,
-          child: Center(
-            child: Text(
-              widget.word,
-              style: const TextStyle(fontSize: 24.0),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-// I want to make a container that blinks the word. Blink means that it shows the word for 1 second and then hides it for 1 second. It repeats this process until the user stops it. How can I make it?
-//
-// I tried to use Timer.periodic() but it didn't work. I think it's because the Timer.periodic() is not a widget. I also tried to use AnimatedContainer but it didn't work either. I think it's because the AnimatedContainer is not a widget that can be used for blinking.
-//
-// I think I need to use setState() to make it work but I don't know how to use it.
-//
-// I'm a beginner in Flutter. Please help me.
-//
-// Thank you.
-//
