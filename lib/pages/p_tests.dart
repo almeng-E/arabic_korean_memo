@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:arabic_korean_memo/data/item_provider.dart';
 
-import 'package:arabic_korean_memo/pages/screens/pp_four_choice.dart';
-import 'package:arabic_korean_memo/pages/screens/pp_test_generator.dart';
+import 'package:arabic_korean_memo/pages/screens/scr_four_choice.dart';
+import 'package:arabic_korean_memo/pages/screens/scr_test_generator.dart';
 
 import 'package:arabic_korean_memo/ui/category_button.dart';
 import 'package:arabic_korean_memo/ui/menu_card.dart';

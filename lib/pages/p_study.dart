@@ -6,9 +6,9 @@ import 'package:arabic_korean_memo/data/item_provider.dart';
 import 'package:arabic_korean_memo/ui/category_button.dart';
 import 'package:arabic_korean_memo/ui/menu_card.dart';
 
-import 'screens/pp_vocabs.dart';
-import 'screens/pp_flash_cards.dart';
-import 'screens/pp_word_blink.dart';
+import 'screens/scr_vocabs.dart';
+import 'screens/scr_flash_cards.dart';
+import 'screens/scr_word_blink.dart';
 
 // =========================================================================
 class MainPageStudy extends StatefulWidget {
