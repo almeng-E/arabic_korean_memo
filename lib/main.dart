@@ -1,9 +1,9 @@
-import 'package:arabic_korean_memo/pages/p_grammar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:arabic_korean_memo/data/item_provider.dart';
 
+import 'package:arabic_korean_memo/pages/p_grammar.dart';
 import 'package:arabic_korean_memo/pages/p_setting.dart';
 import 'package:arabic_korean_memo/pages/p_study.dart';
 import 'package:arabic_korean_memo/pages/p_tests.dart';
