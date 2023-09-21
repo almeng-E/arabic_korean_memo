@@ -84,9 +84,9 @@ class _FlashCardsState extends State<FlashCards> {
       // BODY : ITEM PROVIDER____________________________________________________+카드 스택
       body: Consumer<ItemProvider>(
         builder: (context, provider, child) {
-          // PROGRESS INDICATOR BAR ______________________________________________________
           return Column(
             children: [
+              // PROGRESS INDICATOR BAR ______________________________________________________
               SizedBox(
                 width: double.infinity,
                 height: 15,
